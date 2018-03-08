@@ -6,10 +6,10 @@ const queryAll = document.querySelectorAll.bind(document);
 
 // for console debugging
 var table;
-var modeEl;
 var filteredRowCount;
 var filteredRowData;
 
+var showModeToggle = false;
 
 $(document).ready(function() {
 
@@ -19,14 +19,16 @@ $(document).ready(function() {
   let searchBoxEl   = $('#data-search-box');
   let searchEl      = $('#data-search-field');
   let modeBoxEl     = $('#data-mode-box');
-  modeEl        = $('#data-mode-field');
+  let modeEl        = $('#data-mode-field');
   let resetButtonEl = $('#reset-button');
   let saveButtonEl  = $('#save-button');
 
-  modeEl.bootstrapToggle('disable');
-  modeEl.parent().addClass('disabled')
-  modeEl.parent().find('.btn').each( (index, value) => {$(value).addClass('disabled'); } );
-
+  if(showModeToggle)
+  {
+    modeEl.bootstrapToggle('disable');
+    modeEl.parent().addClass('disabled')
+    modeEl.parent().find('.btn').each( (index, value) => {$(value).addClass('disabled'); } );
+  }
   // given a potential input seed, cleans it up
   // - Can only be 6 chars long
   // - All uppercase
@@ -107,6 +109,10 @@ $(document).ready(function() {
     });
 
 
+  var numRender = function( data, type, row, meta ) {
+    return Math.round(data*10)/10;
+  }
+
 
   var InitTable = function(dataArr, dataMap) {
     table = tableEl.DataTable({
@@ -135,15 +141,15 @@ $(document).ready(function() {
           } 
         },
         // Vitality 1
-        { data: "via1", title: TableHeaders.via1, searchable: false, orderable: true,  className: "h-via"  },
+        { data: "via1", title: TableHeaders.via1, searchable: false, orderable: true,  className: "h-via", render: numRender },
         // STDEV 1
-        { data: "std1", title: TableHeaders.std1, searchable: false, orderable: false, className: "h-std"  },
+        { data: "std1", title: TableHeaders.std1, searchable: false, orderable: false, className: "h-std", render: numRender  },
         // Vitality 2
-        { data: "via2", title: TableHeaders.via2, searchable: false, orderable: true,  className: "h-via"  },
+        { data: "via2", title: TableHeaders.via2, searchable: false, orderable: true,  className: "h-via", render: numRender  },
         // STDEv 2
-        { data: "std2", title: TableHeaders.std2, searchable: false, orderable: false, className: "h-std"  },
+        { data: "std2", title: TableHeaders.std2, searchable: false, orderable: false, className: "h-std", render: numRender  },
         // Average
-        { data: "avg",  title: TableHeaders.avg,  searchable: false, orderable: true,  className: "h-avg"  },
+        { data: "avg",  title: TableHeaders.avg,  searchable: false, orderable: true,  className: "h-avg", render: numRender  },
       ]
     });
 
@@ -180,15 +186,19 @@ $(document).ready(function() {
       }
 
       // Update toggle input
-      modeEl.bootstrapToggle(SequenceMode === "RNA" ? "on" : "off");
+      if(showModeToggle)
+        modeEl.bootstrapToggle(SequenceMode === "RNA" ? "on" : "off");
    
       // Store mode
       window.localStorage.setItem(SequenceModeStoreStr, SequenceMode);
     }
 
-    modeEl.parent().removeClass('disabled')
-    modeEl.parent().find('.btn').each( (index, value) => {$(value).removeClass('disabled'); } );
-    modeEl.bootstrapToggle('enable');
+    if(showModeToggle)
+    {
+      modeEl.parent().removeClass('disabled')
+      modeEl.parent().find('.btn').each( (index, value) => {$(value).removeClass('disabled'); } );
+      modeEl.bootstrapToggle('enable');
+    }
 
     // If mode given in hash use that
     let initialMode = GetModeFromHash();
@@ -219,13 +229,16 @@ $(document).ready(function() {
       // console.log("On Search Input");
       PerformSearch();
     });
-
-    modeEl.on('change', (e) => {
-      // console.log("On Mode Switch Change");
-      let newMode = modeEl.prop('checked') ? "RNA" : "DNA";
-      SetMode(newMode);
-      PerformSearch();
-    });
+    
+    if(showModeToggle)
+    {
+      modeEl.on('change', (e) => {
+        // console.log("On Mode Switch Change");
+        let newMode = modeEl.prop('checked') ? "RNA" : "DNA";
+        SetMode(newMode);
+        PerformSearch();
+      });
+    }
 
     resetButtonEl.on('click' , (e) => {
       window.localStorage.clear();
