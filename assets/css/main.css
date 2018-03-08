@@ -1,4 +1,121 @@
-/* Bootstrap Toggle v2.2.2 corrections for Bootsrtap 4 - https://github.com/minhur/bootstrap-toggle/issues/186 */
-.toggle-off { box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125); }
-.toggle.off { border-color: rgba(0, 0, 0, .25); }
-.toggle-handle { background-color: white; border: thin rgba(0, 0, 0, .25) solid; }
+.card {
+  margin-bottom: 10px;
+}
+
+#data-buttons {
+  padding-right: 1em;
+}
+
+#data-buttons > button {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+#save-button {
+  color: white;
+}
+
+/* Fix for bootstrap-toggle in input-group-append*/
+.input-group-append .toggle-group label.btn, 
+.input-group-prepend .toggle-group label.btn {
+  position: absolute;
+}
+
+.toggle-group .toggle-on.btn, 
+.toggle-group .toggle-off.btn {
+  padding-right: inherit;
+  padding-left: inherit;
+  box-shadow: none;
+}
+.toggle-group .toggle-handle.btn {
+  display: none;
+}
+
+
+div.dataTables_wrapper div.dataTables_length  {
+  padding-top: 0.35rem;
+  padding-right: 1rem;
+}
+div.dataTables_wrapper div.dataTables_length select {
+  width: 120px;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+  padding-top: 0.5rem;
+  padding-bottom: 0.2rem;
+  color: grey;
+  font-style: italic;
+}
+
+/*
+ * Table view
+ */
+
+#data-table td.h-seed span { display: none; }
+#data-table.mode-dna td.h-seed .seq-dna,
+#data-table.mode-rna td.h-seed .seq-rna {display: inherit; }
+
+th.h-std, th.avg {
+  font-weight: normal;
+}
+th.sorting_asc::before, th.sorting_asc::after, th.sorting_desc::before, th.sorting_desc::after {
+  font-size: 1.0rem;
+}
+
+th.sorting_asc, th.sorting_desc, td.sorting_1 {
+  color: rgb(0,30,180);
+}
+
+
+
+
+@media (min-width: 768px) and (max-width: 991px) {    
+  .h-std {
+
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 1200px) {
+
+}
+
+
+
+
+/* 
+ * Column view 
+ */
+.col-fixed { 
+  position: relative; 
+  min-height: 1px; 
+  padding-right: 5px; 
+  padding-left: 5px; 
+  float: left; 
+  width: 100%;
+}
+
+.col-fluid { 
+  position: relative; 
+  min-height: 1px; 
+  padding-right: 5px; 
+  padding-left: 5px; 
+  float: left; 
+  width: 100%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {    
+  .col-fixed { width: 350px; }
+  .col-fluid { width: calc(100% - 350px);}        
+}                                          
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .col-fixed { width: 350px; }
+  .col-fluid { width: calc(100% - 350px);}
+}
+
+@media (min-width: 1200px) {
+  .col-fixed { width: 350px; }
+  .col-fluid { width: calc(100% - 350px);}
+}

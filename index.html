@@ -5,67 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>CellToxicityDb</title>
+  <title>Data Table Test</title>
 
 
-  <script src="assets/vendor/d3-4.13.0/d3.min.js"></script>
-
-  <link rel="stylesheet" href="assets/vendor/bootstrap-4.0.0/css/bootstrap.min.css">
-  <!-- <script src="assets/vendor/bootstrap-4.0.0/js/bootstrap.min.js"></script> -->
-
+  <!-- JQuery -->
   <script src="assets/vendor/jquery-3.3.1/jquery.min.js"></script>
 
+  <!-- D3.js -->
+  <script src="assets/vendor/d3-4.13.0/d3.min.js"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-4.0.0/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- Bootstrap Toggle -->
   <link rel="stylesheet" href="assets/vendor/bootstrap-toggle-2.2.2/css/bootstrap-toggle.min.css">
   <script src="assets/vendor/bootstrap-toggle-2.2.2/js/bootstrap-toggle.min.js"></script>
+
+  <!-- DataTables -->
+  <link rel="stylesheet" href="assets/vendor/datatables-1.10.16/css/datatables.min.css">
+  <script src="assets/vendor/datatables-1.10.16/js/datatables.min.js"></script>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free-5.0.8/css/fontawesome-all.min.css">
 
 
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-  <div class="container">
-    <div class="py-5">
+  <div class="container-fluid">
+    <div class="py-2">
 
       <div class="row">
-
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-header">
-              Mode <div class="float-right"><input type="checkbox" checked data-toggle="toggle" data-on="ATCG (DNA)" data-off="AUCG (RNA)" data-onstyle="primary" data-offstyle="info"></div>
-            </div>
-
-            <div class="card-body">
-              <h5 class="card-title">Success card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-              <form id='seed-form'>
-                <div class="input-group">
-                  <input id="seed-field" type="text" class="form-control">
-                </div>
-              </form>
-            </div>
-
-            <div class="card-footer">
-              Footer <a href="data/6Mer_Toxicities.csv">Download Raw Data</a>
-            </div>
-          </div>
-
-        </div>
-        <div class="col">
-          <div class="card">
-            <div class="card-header">
-              RHS
-            </div>
-            <div class="card-body">
-              Body
-            </div>
-          </div>
-
+        <div id="data-search-box" class="col">
+          
         </div>
 
       </div>
 
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              
+              <div id="data-search-box" class="input-group float-left">
+                <!-- <div class="input-group-prepend">
+                  <label for="data-search-field" class="col-form-label">Filter:</label>
+                </div> -->
+                <input id="data-search-field" type="search" class="form-control" placeholder="Enter Nucleotides to Filter..." disabled>
+
+                <div id="data-buttons" class="input-group-append">
+                  <input id="data-mode-field" type="checkbox" checked data-toggle="toggle" data-off="DNA (ACGT)" data-on="RNA (ACGU)" data-onstyle="success" data-offstyle="primary">
+                  <button id="reset-button" class="btn btn-danger" disabled>Reset</button>
+                </div>
+
+                  <button id="save-button" class="btn btn-dark" disabled><i class="fas fa-download" ></i> Current</button>
+              </div>
+
+
+
+            </div>
+            <div class="card-body">
+              <table id="data-table" class="display table-striped dataTables" width="100%" data-page-length='100'></table>
+            </div>
+          </div> <!-- #table.card -->
+        </div>
+      </div>
+
     </div>
-  </div>
+  </div> <!-- .container-fluid -->
+  <script src="assets/js/mer6data.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
