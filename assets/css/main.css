@@ -1,5 +1,24 @@
+p {
+  margin-bottom: 0.75rem;
+}
+
 .card {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.bg-nw, .card.card-dark {
+  background-color: #514689;
+}
+.card.card-dark {
+  color: white;
+}
+
+.card.card-dark .card-header {
+  background-color: rgba(0,0,0,0.5);
+  color: #d8cfe6;
+}
+.card.card-dark .card-body {
+  background-color: rgba(0,0,0,0.3);
 }
 
 #data-buttons {
@@ -63,7 +82,7 @@ th.sorting_asc::before, th.sorting_asc::after, th.sorting_desc::before, th.sorti
 }
 
 th.sorting_asc, th.sorting_desc, td.sorting_1 {
-  color: rgb(0,30,180);
+  color: #514689
 }
 
 

@@ -34,13 +34,21 @@
 
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
-<body>
+<body class="bg-nw">
   <div class="container-fluid">
     <div class="py-2">
 
       <div class="row">
         <div class="col">
-          <h2>6mer Seed Toxicity</h2>
+          <div id="header-box" class="card card-dark">
+            <div class="card-header">
+              <h2>6mer Seed Toxicity</h2>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Explanation about this page goes here...</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate ante leo, ac mollis quam laoreet in.</p><p>Nulla vel ornare augue. Donec non facilisis turpis. Donec vitae velit ultrices, ultrices leo at, sodales lectus. Phasellus augue ante, pellentesque quis ornare sit amet, rhoncus eget sem.</p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -67,7 +75,7 @@
                   <button id="reset-button" class="btn btn-danger" disabled>Reset</button>
                 </div>
 
-                  <button id="save-button" class="btn btn-dark hidden-xs-down" disabled><i class="fas fa-download" ></i> Download</button>
+                  <button id="save-button" class="btn btn-dark d-none d-sm-block" disabled><i class="fas fa-download" ></i> Download</button>
               </div>
 
 
@@ -77,6 +85,38 @@
               <table id="data-table" class="display table-striped dataTables" width="100%" data-page-length='100'></table>
             </div>
           </div> <!-- #table.card -->
+        </div>
+      </div> <!-- .row -->
+
+      <div class="row">
+        <div class="col">
+          <div class="card card-dark">
+            <div class="card-header"><h4>References</h4></div>
+            <div class="card-body">
+              <h5 class="card-title">Reference Header</h5>
+              <p>References will go here</p>
+              <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>etc...</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card card-dark">
+            <div class="card-header"><h4>Ackowledgements</h4></div>
+            <div class="card-body">
+              <h5 class="card-title">Acknowledgements Header</h5>
+              <p>Acknowledgements will go here</p>
+              <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>etc...</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
