@@ -74,6 +74,20 @@ div.card :first-child {
   color: white;
 }
 
+#table-box.card-body {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (max-width: 767px) {
+  #table-box.card-body #data-table_wrapper {
+    padding: 0;
+  }
+  .t-controls {
+    padding: 0 0.5rem;
+  }
+}
+
 /* Fix for bootstrap-toggle in input-group-append*/
 .input-group-append .toggle-group label.btn, 
 .input-group-prepend .toggle-group label.btn {
@@ -124,8 +138,6 @@ th.sorting_asc::before, th.sorting_asc::after, th.sorting_desc::before, th.sorti
 th.sorting_asc, th.sorting_desc, td.sorting_1 {
   color: #514689;
 }
-
-
 
 
 @media (min-width: 768px) and (max-width: 991px) {    

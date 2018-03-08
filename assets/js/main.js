@@ -121,13 +121,13 @@ $(document).ready(function() {
     table = tableEl.DataTable({
       data: dataArr,
       dom: `
-  <"row"
-    <"col t-len" <"float-left" l > <"float-right" p > <"float-left" i > >
+  <"row t-controls"
+    <"col" <"float-left" l > <"float-right" p > <"float-left" i > >
   >
   r
   t
-  <"row"
-    <"col t-len" <"float-left" l > <"float-right" p > <"float-left" i > >
+  <"row t-controls"
+    <"col" <"float-left" l > <"float-right" p > <"float-left" i > >
   >`,
       paging: true,
       search: {
