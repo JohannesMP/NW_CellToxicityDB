@@ -6,6 +6,11 @@ p {
   margin-bottom: 20px;
 }
 
+div.card :last-child {
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+}
+
 .bg-nw, .card.card-dark {
   background-color: #514689;
 }
