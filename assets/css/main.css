@@ -2,6 +2,15 @@ p {
   margin-bottom: 0.75rem;
 }
 
+#header-box {
+  color: #ede6f8;
+  background-color: rgba(0,0,0,0.5);
+  padding: 2rem 1rem 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+}
+
 .card {
   margin-bottom: 20px;
 }
@@ -10,17 +19,29 @@ div.card :last-child {
   border-bottom-left-radius: .25rem;
   border-bottom-right-radius: .25rem;
 }
+div.card :first-child {
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+}
 
 .bg-nw, .card.card-dark {
   background-color: #514689;
 }
 .card.card-dark {
-  color: white;
+  color: #ede6f8;
+}
+.card.card-dark p {
+  opacity: 0.7;
+}
+.card.card-dark hr {
+  border-color: rgba(255,240,255,0.1);
+  padding-top: 1rem;
 }
 
-.card.card-dark .card-header {
+.card.card-dark .card-header, .card.card-dark .card-footer {
   background-color: rgba(0,0,0,0.5);
-  color: #d8cfe6;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
 }
 .card.card-dark .card-body {
   background-color: rgba(0,0,0,0.3);

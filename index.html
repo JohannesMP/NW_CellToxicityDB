@@ -16,7 +16,7 @@
   <!-- D3.js -->
   <script src="assets/vendor/d3-4.13.0/d3.min.js"></script>
 
-  <!-- Bootstrap -->
+  <!-- Bocotstrap -->
   <link rel="stylesheet" href="assets/vendor/bootstrap-4.0.0/css/bootstrap.min.css">
   <script src="assets/vendor/bootstrap-4.0.0/js/bootstrap.min.js"></script>
 
@@ -33,97 +33,94 @@
 
 
   <link rel="stylesheet" href="assets/css/main.css">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115418404-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-115418404-1');
+  </script>
+
 </head>
 <body class="bg-nw">
   <div class="container-fluid">
-    <div class="py-2">
 
-      <div class="row">
-        <div class="col">
-          <div id="header-box" class="card card-dark">
-            <div class="card-header">
-              <h2>6mer Seed Toxicity</h2>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Explanation about this page goes here...</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate ante leo, ac mollis quam laoreet in.</p><p>Nulla vel ornare augue. Donec non facilisis turpis. Donec vitae velit ultrices, ultrices leo at, sodales lectus. Phasellus augue ante, pellentesque quis ornare sit amet, rhoncus eget sem.</p>
-            </div>
-          </div>
+    <div class="row">
+      <div class="col">
+        <div id="header-box">
+          <h2>6mer Seed Toxicity</h2>
         </div>
       </div>
-      <div class="row">
-        <div id="data-search-box" class="col">
-          
-        </div>
-
-      </div>
-
-      <div class="row">
-        <div class="col">
-          <div class="card">
-            <div class="card-header">
-              
-              <div id="data-search-box" class="input-group float-left">
-                <!-- <div class="input-group-prepend">
-                  <label for="data-search-field" class="col-form-label">Filter:</label>
-                </div> -->
-                <input id="data-search-field" type="search" class="form-control" placeholder="Enter Nucleotides to Filter..." disabled>
-
-                <div id="data-buttons" class="input-group-append">
-                  <!-- <input id="data-mode-field" type="checkbox" checked data-toggle="toggle" data-off="DNA (ACGT)" data-on="RNA (ACGU)" data-onstyle="success" data-offstyle="primary" disabled> -->
-
-                  <button id="reset-button" class="btn btn-danger" disabled>Reset</button>
-                </div>
-
-                  <button id="save-button" class="btn btn-dark d-none d-sm-block" disabled><i class="fas fa-download" ></i> Download</button>
-              </div>
-
-            </div>
-            <div class="card-body">
-
-              <div id="loading-display" class="my-5 py-5 text-center">
-                <h5>Data is loading...</h5>
-                <h1><i id="loader"class="fas fa-circle-notch"></i></h1>
-              </div>
-              <table id="data-table" class="display table-striped dataTables" width="100%" data-page-length='100'></table>
-            </div>
-          </div> <!-- #table.card -->
-        </div>
-      </div> <!-- .row -->
-
-      <div class="row">
-        <div class="col">
-          <div class="card card-dark">
-            <div class="card-header"><h4>References</h4></div>
-            <div class="card-body">
-              <h5 class="card-title">Reference Header</h5>
-              <p>References will go here</p>
-              <ul>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>etc...</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card card-dark">
-            <div class="card-header"><h4>Ackowledgements</h4></div>
-            <div class="card-body">
-              <h5 class="card-title">Acknowledgements Header</h5>
-              <p>Acknowledgements will go here</p>
-              <ul>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>etc...</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+    </div>
+    <div class="row">
+      <div id="data-search-box" class="col">
+        
       </div>
 
     </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            
+            <div id="data-search-box" class="input-group float-left">
+              <!-- <div class="input-group-prepend">
+                <label for="data-search-field" class="col-form-label">Filter:</label>
+              </div> -->
+              <input id="data-search-field" type="search" class="form-control" placeholder="Enter Nucleotides to Filter..." disabled>
+
+              <div id="data-buttons" class="input-group-append">
+                <!-- <input id="data-mode-field" type="checkbox" checked data-toggle="toggle" data-off="DNA (ACGT)" data-on="RNA (ACGU)" data-onstyle="success" data-offstyle="primary" disabled> -->
+
+                <button id="reset-button" class="btn btn-danger" disabled>Reset</button>
+              </div>
+
+                <button id="save-button" class="btn btn-dark d-none d-sm-block" disabled><i class="fas fa-download" ></i> Download</button>
+            </div>
+
+          </div>
+          <div class="card-body">
+
+            <div id="loading-display" class="my-5 py-5 text-center">
+              <h5>Data is loading...</h5>
+              <h1><i id="loader"class="fas fa-circle-notch"></i></h1>
+            </div>
+            <table id="data-table" class="display table-striped dataTables" width="100%" data-page-length='100'></table>
+          </div>
+        </div> <!-- #table.card -->
+      </div>
+    </div> <!-- .row -->
+
+    <div class="row">
+      <div class="col">
+        <div class="card card-dark">
+          <div class="card-header"></div>
+          <div class="card-body">
+            <h5 class="card-title">Info</h5>
+            <p>info</p>
+            <hr>
+            <h5 class="card-title">References</h5>
+            <p>references</p>
+            <hr>
+            <h5 class="card-title">Acknowledgements</h5>
+            <p>acknowledgements</p>
+            <!-- <h5 class="card-title">Reference Header</h5>
+            <p>References will go here</p>
+            <ul>
+              <li>Item 1</li>
+              <li>Item 2</li>
+              <li>etc...</li>
+            </ul> -->
+          </div>
+          <div class="card-footer"></div>
+        </div>
+      </div>
+    </div>
+
   </div> <!-- .container-fluid -->
   <script src="assets/js/mer6data.js"></script>
   <script src="assets/js/main.js"></script>
