@@ -78,10 +78,13 @@
                   <button id="save-button" class="btn btn-dark d-none d-sm-block" disabled><i class="fas fa-download" ></i> Download</button>
               </div>
 
-
-
             </div>
             <div class="card-body">
+
+              <div id="loading-display" class="my-5 py-5 text-center">
+                <h5>Data is loading...</h5>
+                <h1><i id="loader"class="fas fa-circle-notch"></i></h1>
+              </div>
               <table id="data-table" class="display table-striped dataTables" width="100%" data-page-length='100'></table>
             </div>
           </div> <!-- #table.card -->

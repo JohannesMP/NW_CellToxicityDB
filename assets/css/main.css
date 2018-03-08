@@ -21,6 +21,16 @@ p {
   background-color: rgba(0,0,0,0.3);
 }
 
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+#loader {
+  animation: spin 3s linear infinite;
+}
+
 #data-buttons {
   padding-right: 1em;
 }

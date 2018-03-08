@@ -22,6 +22,7 @@ $(document).ready(function() {
   let modeEl        = $('#data-mode-field');
   let resetButtonEl = $('#reset-button');
   let saveButtonEl  = $('#save-button');
+  let loadingEl = $('#loading-display');
 
   if(showModeToggle)
   {
@@ -115,6 +116,8 @@ $(document).ready(function() {
 
 
   var InitTable = function(dataArr, dataMap) {
+    loadingEl.remove();
+
     table = tableEl.DataTable({
       data: dataArr,
       dom: `
