@@ -1,9 +1,9 @@
 // The headers used to identify each row in the csv
 const TableHeaders = {
   seed : "Seed",                 // DNA 6-Mer
-  via1 : "Cell viability HeyA8",
+  via1 : "Cell viability HeyA8 (%)",
   std1 : "STDEV (HeyA8)",
-  via2 : "Cell viability M565",
+  via2 : "Cell viability M565 (%)",
   std2 : "STDEV (M565)",
   avg  : "Average"               // calculated when needed from via1, via2
 };
