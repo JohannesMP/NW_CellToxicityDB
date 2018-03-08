@@ -6,6 +6,7 @@ const queryAll = document.querySelectorAll.bind(document);
 
 // for console debugging
 var table;
+var modeEl;
 var filteredRowCount;
 var filteredRowData;
 
@@ -18,9 +19,13 @@ $(document).ready(function() {
   let searchBoxEl   = $('#data-search-box');
   let searchEl      = $('#data-search-field');
   let modeBoxEl     = $('#data-mode-box');
-  let modeEl        = $('#data-mode-field');
+  modeEl        = $('#data-mode-field');
   let resetButtonEl = $('#reset-button');
   let saveButtonEl  = $('#save-button');
+
+  modeEl.bootstrapToggle('disable');
+  modeEl.parent().addClass('disabled')
+  modeEl.parent().find('.btn').each( (index, value) => {$(value).addClass('disabled'); } );
 
   // given a potential input seed, cleans it up
   // - Can only be 6 chars long
@@ -59,10 +64,7 @@ $(document).ready(function() {
     var i = location.hash.indexOf(':');
 
     if(i == -1)
-    {
-      console.log("INVALID HASH STRING - NO MODE");
       return undefined;
-    }
 
     return location.hash.substring(1,i);
   }
@@ -153,8 +155,7 @@ $(document).ready(function() {
       if(updateHash === undefined || updateHash === true)
         location.hash = BuildHash(content);
 
-      console.log(`searching for: ${DNAtoRNA(content)}`);
-      // console.log(location.hash.substring(1));
+      console.log(`Searching for: ${DNAtoRNA(content)}`);
       regExSearch = ".*" + DNAtoRNA(content) + ".*";
       table.column(0).search(regExSearch, true, false).draw();
     }
@@ -168,7 +169,7 @@ $(document).ready(function() {
         return;
       SequenceMode = val;
 
-      console.log(`*** MODE IS NOW: ${SequenceMode}`);
+      console.log(`Mode is now: ${SequenceMode}`);
       // Update table view
       if(SequenceMode !== "RNA") {
         tableEl.addClass("mode-dna");
@@ -185,6 +186,9 @@ $(document).ready(function() {
       window.localStorage.setItem(SequenceModeStoreStr, SequenceMode);
     }
 
+    modeEl.parent().removeClass('disabled')
+    modeEl.parent().find('.btn').each( (index, value) => {$(value).removeClass('disabled'); } );
+    modeEl.bootstrapToggle('enable');
 
     // If mode given in hash use that
     let initialMode = GetModeFromHash();
@@ -212,12 +216,12 @@ $(document).ready(function() {
     PerformSearch();
 
     searchEl.on('input', (e) => {
-      // console.log("------ On Search Input");
+      // console.log("On Search Input");
       PerformSearch();
     });
 
     modeEl.on('change', (e) => {
-      // console.log("------ On Mode Switch Change");
+      // console.log("On Mode Switch Change");
       let newMode = modeEl.prop('checked') ? "RNA" : "DNA";
       SetMode(newMode);
       PerformSearch();
@@ -225,7 +229,12 @@ $(document).ready(function() {
 
     resetButtonEl.on('click' , (e) => {
       window.localStorage.clear();
-      window.location = window.location.href.replace(window.location.hash, '');
+
+      // Handle reloading
+      if(window.location.hash == "")
+        window.location = window.location.href.replace("#",'');
+      else
+        window.location = window.location.href.replace(window.location.hash, '');
     });
 
     saveButtonEl.on('click', (e) => {
@@ -256,18 +265,12 @@ $(document).ready(function() {
     // Handle user manually changing hash string
     if("onhashchange" in window) {
       window.addEventListener("hashchange", () => {
-        console.log("------ On Hash Change");
-        console.log("PRE HASH MODE");
+        console.log("Hash String Was Change");
         SetMode(GetModeFromHash());
-        console.log("POST HASH MODE");
 
         let newVal = GetSequenceFromHash();
-        console.log(`NEW SEQUENCE: ${newVal}`);
         if(newVal === searchEl.val())
-        {
-          console.log("SEARCH IS SAME!");
           return;
-        }
 
         searchEl.val(newVal);
         PerformSearch();
@@ -278,8 +281,6 @@ $(document).ready(function() {
       resetButtonEl.prop("disabled", false);
       saveButtonEl.prop("disabled", false);
     }
-
   }
-
 
 });
