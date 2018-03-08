@@ -53,6 +53,10 @@ div.card :first-child {
     to {transform:rotate(360deg);}
 }
 
+#loading-display {
+  color: #514689;
+}
+
 #loader {
   animation: spin 3s linear infinite;
 }
@@ -118,7 +122,7 @@ th.sorting_asc::before, th.sorting_asc::after, th.sorting_desc::before, th.sorti
 }
 
 th.sorting_asc, th.sorting_desc, td.sorting_1 {
-  color: #514689
+  color: #514689;
 }
 
 
