@@ -154,6 +154,18 @@ div.dataTables_wrapper div.dataTables_info {
   color: white;
   border-color: #43387d;
 }
+
+/* Responsively minimize Pagesize Select UI */
+@media (max-width: 767px) {
+  .dataTables_length label {
+    font-size: 0;
+  }
+  .dataTables_length label select {
+    font-size: 1rem;
+  }
+}
+
+/* Responsively minimize Pagination UI */
 @media (max-width: 991px) {
   .pagination .page-item {
     display: none;
