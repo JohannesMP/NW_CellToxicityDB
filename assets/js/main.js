@@ -102,29 +102,35 @@ $(document).ready(function() {
     <"col" <"float-left" l > <"float-right" p > <"float-left" i > >
   >`,
       paging: true,
-      search: {
-        smart: false
-      },
+      search: { smart: false },
       searchDelay: 100,
       processing: true,
       stateSave: true,
-      lengthMenu: [[ 10, 50, 100, 500, -1], [ 10, 50, 100, 500, "All (slow)"]],
+      lengthMenu: [ [ 10, 50, 100, 500, -1], 
+                    [ 10, 50, 100, 500, "All (slow)"] ],
       columns: [
         // Seed
-        { data: "seed", title: TableHeaders.seed, searchable: true,  orderable: true,  className: "h-seed", render: function ( data, type, row, meta ) { 
-            return `<span class="seq-rna">${DNAtoRNA(data)}</span>`
+        { data: "seed", title: TableHeaders.seed, searchable: true,  
+          orderable: true,  className: "h-seed", 
+          render: function ( data, type, row, meta ) { 
+            return `<span class="seq-rna"><a href="#${DNAtoRNA(data)}">${DNAtoRNA(data)}</a></span>`
           } 
         },
         // Vitality 1
-        { data: "via1", title: TableHeaders.via1, searchable: false, orderable: true,  className: "h-via", render: numRender },
+        { data: "via1", title: TableHeaders.via1, searchable: false, 
+          orderable: true,  className: "h-via", render: numRender },
         // STDEV 1
-        { data: "std1", title: TableHeaders.std1, searchable: false, orderable: false, className: "h-std", render: numRender  },
+        { data: "std1", title: TableHeaders.std1, searchable: false, 
+          orderable: false, className: "h-std", render: numRender  },
         // Vitality 2
-        { data: "via2", title: TableHeaders.via2, searchable: false, orderable: true,  className: "h-via", render: numRender  },
+        { data: "via2", title: TableHeaders.via2, searchable: false, 
+          orderable: true,  className: "h-via", render: numRender  },
         // STDEv 2
-        { data: "std2", title: TableHeaders.std2, searchable: false, orderable: false, className: "h-std", render: numRender  },
+        { data: "std2", title: TableHeaders.std2, searchable: false, 
+          orderable: false, className: "h-std", render: numRender  },
         // Average
-        { data: "avg",  title: TableHeaders.avg,  searchable: false, orderable: true,  className: "h-avg", render: numRender  },
+        { data: "avg",  title: TableHeaders.avg,  searchable: false, 
+          orderable: true,  className: "h-avg", render: numRender  },
       ]
     });
 

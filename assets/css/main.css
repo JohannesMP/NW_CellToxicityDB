@@ -142,8 +142,14 @@ th.sorting_asc::before, th.sorting_asc::after, th.sorting_desc::before, th.sorti
   font-size: 1.0rem;
 }
 
-th.sorting_asc, th.sorting_desc, td.sorting_1 {
-  color: #514689;
+th.sorting_asc, 
+th.sorting_desc, 
+td.sorting_1,
+td.sorting_1 .seq-rna a {
+  color: #6a2cbe;
+}
+td  .seq-rna a {
+  color: #212529;
 }
 
 
