@@ -83,8 +83,7 @@ $(document).ready(function() {
 
   // print a number rounded to one decimal place
   var numRender = function( data, type, row, meta ) {
-    let up = Math.round(data*10)
-    return `${up/10}${up%10 == 0 ? ".0" : ""}`
+    return Number.parseFloat(data).toFixed(1);
   }
 
 
