@@ -81,9 +81,10 @@ $(document).ready(function() {
       InitTable(dataArr, dataMap)
     });
 
-
+  // print a number rounded to one decimal place
   var numRender = function( data, type, row, meta ) {
-    return Math.round(data*10)/10;
+    let up = Math.round(data*10)
+    return `${up/10}${up%10 == 0 ? ".0" : ""}`
   }
 
 
