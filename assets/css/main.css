@@ -135,6 +135,25 @@ div.dataTables_wrapper div.dataTables_info {
 #data-table.mode-dna td.h-seed .seq-dna,
 #data-table.mode-rna td.h-seed .seq-rna {display: inherit; }
 
+.pagination a {
+  color: #6a2cbe;
+}
+.page-item.disabled .page-link {
+  color: #a49ec3;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #514689;
+  color: white;
+  border-color: #43387d;
+}
+.t-controls :focus {
+ box-shadow: 0 0 0 0.2rem rgba(60, 44, 190, 0.25);
+}
+.t-controls select:focus {
+  border-color: #43387d;
+}
+
 th.h-std, th.avg {
   font-weight: normal;
 }
