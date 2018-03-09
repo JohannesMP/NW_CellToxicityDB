@@ -112,6 +112,13 @@ div.card :first-child {
 }
 
 
+div.dataTables_wrapper div.dataTables_processing {
+  top: inherit;
+  left: calc(50% - 100px);
+  z-index: 2000;
+  width: 400px;
+}
+
 div.dataTables_wrapper div.dataTables_length  {
   padding-top: 0.35rem;
   padding-right: 1rem;
@@ -147,6 +154,16 @@ div.dataTables_wrapper div.dataTables_info {
   color: white;
   border-color: #43387d;
 }
+@media (max-width: 991px) {
+  .pagination .page-item {
+    display: none;
+  }
+  .pagination .page-item.previous,
+  .pagination .page-item.next {
+    display: inherit;
+  }
+}
+
 .t-controls :focus {
  box-shadow: 0 0 0 0.2rem rgba(60, 44, 190, 0.25);
 }

@@ -96,8 +96,8 @@ $(document).ready(function() {
   <"row t-controls"
     <"col" <"float-left" l > <"float-right" p > <"float-left" i > >
   >
-  r
-  t
+  <"row t-processing" r>
+  <"t-table" t>
   <"row t-controls"
     <"col" <"float-left" l > <"float-right" p > <"float-left" i > >
   >`,
