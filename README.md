@@ -2,7 +2,7 @@
 
 ## About
 
-This site was created in collaboration with the Peter Lab at the Feinberg School of Medicine of Northwestern University.
+This site was created in collaboration with the [Peter Lab](labs.feinberg.northwest) at the Feinberg School of Medicine of Northwestern University.
 
 The app is entirely static, hosted with [Github Pages](https://pages.github.com/) and all data filtering and download file generation occurs locally without any server requests made apart from the initial browser request.
 
