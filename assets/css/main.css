@@ -38,6 +38,13 @@ div.card :first-child {
   padding-top: 1rem;
 }
 
+.card.card-dark a {
+  color: #b6aee0;
+}
+.card.card-dark a:hover {
+  color: #dfdcf0;
+}
+
 .card.card-dark .card-header, .card.card-dark .card-footer {
   background-color: rgba(0,0,0,0.5);
   padding-top: 0.4rem;

@@ -16,7 +16,12 @@
   <!-- D3.js -->
   <script src="assets/vendor/d3-4.13.0/d3.min.js"></script>
 
-  <!-- Bocotstrap -->
+  <!-- BlobJS - FileSaverJS dependency -->
+  <script src="assets/vendor/blobjs/blob.js"></script>
+  <!-- FileSaverJS - More support for older browsers -->
+  <script src="assets/vendor/filesaverjs-1.3.5/filesaver.js"></script>
+
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="assets/vendor/bootstrap-4.0.0/css/bootstrap.min.css">
   <script src="assets/vendor/bootstrap-4.0.0/js/bootstrap.min.js"></script>
 
@@ -101,13 +106,15 @@
           <div class="card-header"></div>
           <div class="card-body">
             <h5 class="card-title">Info</h5>
-            <p>info</p>
+            <p>This site allows to look up the activity of any siRNA, shRNA, or miRNA duplex to be toxic through induction of DISE (death induced by survival gene elimination) in a human and a mouse cell line.</p>
+            <p>Just type one of 4096 possible 6mers into the search field or any nucleotide sequence of less than 6 nucleotides. Use positions 2-7 of the guide/antisense strand of the siRNA duplex as the 6mer.</p>
             <hr>
             <h5 class="card-title">References</h5>
-            <p>references</p>
+            <p>Gao, Q.Q., Putzbach, W.E., Murmann, A.E., Chen, S., Sarshad, A.A., Ambrosini, G., Bartom, E.T., Hafner, M. and Peter, M.E. Induction of DISE by tumor suppressive microRNAs. Submitted.</p>
             <hr>
             <h5 class="card-title">Acknowledgements</h5>
-            <p>acknowledgements</p>
+            <p>This site was developed by <a href="http://www.johannesmp.com">Johannes Peter</a></p>
+            <p>The source code is available on <a href="https://github.com/JohannesMP/NW_CellToxicityDB">Github</a></p>
             <!-- <h5 class="card-title">Reference Header</h5>
             <p>References will go here</p>
             <ul>
