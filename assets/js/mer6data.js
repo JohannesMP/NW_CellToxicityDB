@@ -69,3 +69,12 @@ var Mer6ArrayToCSV = function(dataArr)
   
   return csv;
 }
+
+
+var RNAtoDNA = function (str) {
+  return str.split('U').join('T');
+}
+
+var DNAtoRNA = function (str) {
+  return str.split('T').join('U');
+}

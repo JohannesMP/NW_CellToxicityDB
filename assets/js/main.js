@@ -1,6 +1,3 @@
-let SequenceMode = undefined;
-const SequenceModeStoreStr = "App.Settings.SequenceMode";
-
 const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
 
@@ -22,7 +19,7 @@ $(document).ready(function() {
   let modeEl        = $('#data-mode-field');
   let resetButtonEl = $('#reset-button');
   let saveButtonEl  = $('#save-button');
-  let loadingEl = $('#loading-display');
+  let loadingEl     = $('#loading-display');
 
   if(showModeToggle)
   {
@@ -46,21 +43,11 @@ $(document).ready(function() {
         chars.splice(i,1);
         --i;
       }
-      else if(SequenceMode === "RNA" && chars[i] == 'T') 
+      else if(chars[i] == 'T') 
         chars[i] = 'U';
-      else if(SequenceMode === "DNA" && chars[i] == 'U') 
-        chars[i] = 'T';
     }
 
     return chars.join('');
-  }
-
-  // small helper function for only 
-  var RNAtoDNA = function (str) {
-    return str.split('U').join('T');
-  }
-  var DNAtoRNA = function (str) {
-    return str.split('T').join('U');
   }
 
   var GetModeFromHash = function() {
@@ -80,21 +67,6 @@ $(document).ready(function() {
     return location.hash.substring(i+1);
     return raw;
   }
-
-  // Builds the hash string 
-  var BuildHash = function(sequence)
-  {
-    let mode = "";
-    if(SequenceMode !== undefined)
-    {
-      if(SequenceMode === "RNA" && GetModeFromHash() != undefined)
-        mode = "RNA";
-      else if(SequenceMode === "DNA")
-        mode = "DNA";
-    }
-    return `${mode}${mode == "" ? "" : ":"}${sequence}`; 
-  }
-
 
   d3.csv("data/6Mer_Data.csv")
     .row( r => { return new Mer6(r); })
@@ -140,7 +112,7 @@ $(document).ready(function() {
       columns: [
         // Seed
         { data: "seed", title: TableHeaders.seed, searchable: true,  orderable: true,  className: "h-seed", render: function ( data, type, row, meta ) { 
-            return `<span class="seq-dna">${RNAtoDNA(data)}</span><span class="hidden">.</span><span class="seq-rna">${DNAtoRNA(data)}</span>`
+            return `<span class="seq-rna">${DNAtoRNA(data)}</span>`
           } 
         },
         // Vitality 1
@@ -162,56 +134,12 @@ $(document).ready(function() {
       searchEl.val(content);
 
       if(updateHash === undefined || updateHash === true)
-        location.hash = BuildHash(content);
+        location.hash = content;
 
       console.log(`Searching for: ${DNAtoRNA(content)}`);
       regExSearch = ".*" + DNAtoRNA(content) + ".*";
       table.column(0).search(regExSearch, true, false).draw();
     }
-
-    // true  = RNA
-    // false = DNA
-    var SetMode = function(val, updateSearch) {
-      // default for invalid inputs is RNA
-      val = (!val ? "RNA" : val);
-      if(SequenceMode !== undefined && SequenceMode == val)
-        return;
-      SequenceMode = val;
-
-      console.log(`Mode is now: ${SequenceMode}`);
-      // Update table view
-      if(SequenceMode !== "RNA") {
-        tableEl.addClass("mode-dna");
-        tableEl.removeClass("mode-rna");
-      } else {
-        tableEl.addClass("mode-rna");
-        tableEl.removeClass("mode-dna");
-      }
-
-      // Update toggle input
-      if(showModeToggle)
-        modeEl.bootstrapToggle(SequenceMode === "RNA" ? "on" : "off");
-   
-      // Store mode
-      window.localStorage.setItem(SequenceModeStoreStr, SequenceMode);
-    }
-
-    if(showModeToggle)
-    {
-      modeEl.parent().removeClass('disabled')
-      modeEl.parent().find('.btn').each( (index, value) => {$(value).removeClass('disabled'); } );
-      modeEl.bootstrapToggle('enable');
-    }
-
-    // If mode given in hash use that
-    let initialMode = GetModeFromHash();
-    // If no mode in hash, try to use saved
-    if(initialMode === undefined)
-    {
-      initialMode = window.localStorage.getItem(SequenceModeStoreStr);
-    }
-
-    SetMode(initialMode);
 
     // Store filtered rows for saving
     table.on('search.dt', function() {
@@ -232,16 +160,6 @@ $(document).ready(function() {
       // console.log("On Search Input");
       PerformSearch();
     });
-    
-    if(showModeToggle)
-    {
-      modeEl.on('change', (e) => {
-        // console.log("On Mode Switch Change");
-        let newMode = modeEl.prop('checked') ? "RNA" : "DNA";
-        SetMode(newMode);
-        PerformSearch();
-      });
-    }
 
     resetButtonEl.on('click' , (e) => {
       window.localStorage.clear();
@@ -261,20 +179,13 @@ $(document).ready(function() {
       var filterStr = searchEl.val();
       if(filterStr == "")
         filterStr = "all";
-      var csvFileName = `6mer_${filterStr}_${SequenceMode}.csv`
+      var csvFileName = `6mer_${filterStr}.csv`
 
-      var blob = new Blob([csvData]);
       if (window.navigator.msSaveOrOpenBlob)  // IE hack; see http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
           window.navigator.msSaveBlob(csvData, csvFileName);
+      // save using FileSaver.js
       else
-      {
-          var a = window.document.createElement("a");
-          a.href = window.URL.createObjectURL(blob, {type: "text/plain"});
-          a.download = csvFileName;
-          document.body.appendChild(a);
-          a.click();  // IE: "Access is denied"; see: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access
-          document.body.removeChild(a);
-      }
+        saveAs(new Blob([csvData], {type: "text/csv"}), csvFileName);
       
     });
 
@@ -282,7 +193,6 @@ $(document).ready(function() {
     if("onhashchange" in window) {
       window.addEventListener("hashchange", () => {
         console.log("Hash String Was Change");
-        SetMode(GetModeFromHash());
 
         let newVal = GetSequenceFromHash();
         if(newVal === searchEl.val())
