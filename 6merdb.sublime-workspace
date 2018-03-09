@@ -1,0 +1,493 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"if",
+				"if\tif"
+			],
+			[
+				"include",
+				"include\tinclude"
+			],
+			[
+				"MOV",
+				"movd \tMove Doubleword/Move Quadword"
+			],
+			[
+				"SUM",
+				"sum"
+			],
+			[
+				"Get",
+				"GetBucketCount"
+			],
+			[
+				"valid",
+				"validCostMin_"
+			],
+			[
+				"FILE",
+				"FILE_ENDING_VECTOR"
+			],
+			[
+				"M",
+				"FILE_ENDING_MATRIX"
+			],
+			[
+				"Width",
+				"width_"
+			]
+		]
+	},
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 195.0,
+		"last_filter": "sidebar",
+		"selected_items":
+		[
+			[
+				"sidebar",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"javascri",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"pacakge list",
+				"Package Control: List Packages"
+			],
+			[
+				"liq",
+				"Set Syntax: HTML (Liquid)"
+			],
+			[
+				"liqui",
+				"Set Syntax: HTML (Liquid)"
+			],
+			[
+				"tab",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"nasm",
+				"Set Syntax: Assembly x86 (NASM)"
+			],
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"gener",
+				"Set Syntax: Generic Config"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"liquid",
+				"Set Syntax: HTML (Liquid)"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"ayu",
+				"ayu: Activate theme"
+			],
+			[
+				"package",
+				"Preferences: Browse Packages"
+			],
+			[
+				"space",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"C#",
+				"Set Syntax: C#"
+			],
+			[
+				"convert to spa",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"convert to tab",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"nginx",
+				"Set Syntax: nginx"
+			],
+			[
+				"convert to tabs",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"c#",
+				"Set Syntax: C#"
+			],
+			[
+				"pla",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"mark",
+				"Set Syntax: Markdown"
+			],
+			[
+				"gene",
+				"Set Syntax: Generic Config"
+			],
+			[
+				"arm",
+				"Set Syntax: ARM Assembly"
+			],
+			[
+				"ngin",
+				"Set Syntax: nginx"
+			],
+			[
+				"confi",
+				"Set Syntax: Generic Config"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"setc+",
+				"Set Syntax: C++"
+			],
+			[
+				"c",
+				"Set Syntax: C++"
+			],
+			[
+				"lint",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"linter",
+				"SublimeLinter: Next Error"
+			],
+			[
+				"lremove",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"update",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"package insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 608.0
+	},
+	"console":
+	{
+		"height": 245.0,
+		"history":
+		[
+			"cppcheck",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Jo/AppData/Roaming/Factorio/mods/mod-list.json",
+		"/C/Users/Jo/Documents/MobaXterm/slash/RemoteFiles/133068_2_0/config-path.cfg",
+		"/C/Users/Jo/Google Drive/Academic/2018 - 1_Spring/CS212/cs212_week08_Notes01F.txt",
+		"/C/Users/Jo/Google Drive/Academic/2018 - 1_Spring/CS212/cs212_week06_Notes02_3NF.txt",
+		"/C/Users/Jo/Downloads/PeterJohannes_HW2.txt",
+		"/D/ServerData_NamecheapPhoenix/etc_supervisor_backup/etc/supervisor/conf.d/Factorio_00Test.conf",
+		"/D/ServerData_NamecheapPhoenix/home_backup/home/games/Factorio/Factorio_01Ryxos/NOTES.txt",
+		"/C/Users/Jo/AppData/Roaming/Greenshot/Greenshot.ini",
+		"/C/Users/Jo/Downloads/alternate",
+		"/C/Users/Jo/Google Drive/Academic/2018 - 1_Spring/CS212/Submissions/PeterJohannes_HW1.txt",
+		"/Z/LocalDev/HTML5_LocalStorage/index.html",
+		"/Z/HTML5_LocalStorage/assets/js/main.js",
+		"/Z/LocalDev/index.html",
+		"/Z/LocalDev/oauth_redirect/index.html",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/Users/Jo/Desktop/Sandbox/MAT340_Proj1/Build/premake5.lua",
+		"/C/Users/Jo/Desktop/Sandbox/MAT340_Proj1/Source/Shared/Utils/string.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT340_Proj1/Source/general.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj2/StatRunner/Source/Utils/math.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT340_Proj1/Source/Shared/Utils/debug.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT340_Proj1/Source/Shared/Utils/fs.cpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT340_Proj1/Source/Shared/Utils/fs.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT340_Proj1/Source/Shared/Utils/math.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT340_Proj1/Source/main.cpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT340_Proj1/Source/App/app.hpp",
+		"/J/SteamLibrary_Fast/steamapps/common/Kerbal Space Program/GameData/PlanetShine-0.2.5.2/GameData/PlanetShine/Plugins/PlanetShine.version",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_collections/_includes/head.html",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_collections/_layouts/default.html",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_collections/_layouts/item_grid.html",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_collections/_includes/mixitup.html",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_collections/assets/css/main.scss",
+		"/C/Users/Jo/Desktop/Sandbox/cs261docs/public/css/main.scss",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_collections/_sass/_base.scss",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_collections/_sass/_mixins.scss",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_collections/_sass/_layout.scss",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/_layouts/default.html",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/index.md",
+		"/E/VMware_Mac10.12.6/instructions.txt",
+		"/C/Users/Jo/Documents/MobaXterm/slash/RemoteFiles/67000_3_0/admin_ranks.txt",
+		"/C/Users/Jo/Documents/MobaXterm/slash/RemoteFiles/67448_4_2/TGStation_01.conf",
+		"/C/Users/Jo/Documents/MobaXterm/slash/RemoteFiles/67448_4_3/TGStation_01.conf",
+		"/C/Users/Jo/Documents/MobaXterm/slash/RemoteFiles/67448_5_1/Notes.txt",
+		"/Z/html_include_test/js/html-import.js",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/_my_data/Data_Foo_B.md",
+		"/C/Users/Jo/Desktop/Sandbox/cs261docs/_my_data/Data_Bar_C.md",
+		"/C/Users/Jo/Desktop/Sandbox/cs261docs/_layouts/default.html",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/toc.html",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/Gemfile",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/test.html",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/_includes/temp.html",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/_layouts/temp.html",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/Serve.bat",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/_includes/filter/toc_clean_md.html",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/_includes/filter",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/_my_data/test1.md",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/_my_data/test2.md",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/_config.yml",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/_site/assets/css/style.css",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/_layouts/include_test.html",
+		"/C/Users/Jo/Desktop/Sandbox/jekyll_testing/_site/sitemap.xml",
+		"/C/Users/Jo/Desktop/Sandbox/cs261docs/_site/index.html",
+		"/D/ServerData_NamecheapPhoenix/etc_supervisor_backup/etc/supervisor/conf.d/darkmultiplayer.conf",
+		"/D/ServerData_NamecheapPhoenix/etc_supervisor_backup/etc/supervisor/conf.d/projectzomboid.conf",
+		"/D/ServerData_NamecheapPhoenix/etc_supervisor_backup/etc/supervisor/conf.d/starbound.conf",
+		"/D/ServerData_NamecheapPhoenix/etc_supervisor_backup/etc/supervisor/conf.d/teamspeakdns.conf",
+		"/D/ServerData_NamecheapPhoenix/etc_supervisor_backup/etc/supervisor/supervisord.conf",
+		"/C/Utils/SublimeText3/Data/Packages/User/Preferences.sublime-settings",
+		"/C/Utils/SublimeText3/Data/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj4/Source/Math/Rand.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj4/Source/Math/Rand.cpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj4/project_vs2017/out.bmp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj4/External/stb_9d9f75e/Includes/STB/stb_image_resize.h",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj4/External/stb_9d9f75e/Includes/STB/stb_image_write.h",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj4/Source/Containers/Array.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj4/Source/Containers/Dataset.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj4/Source/Image/StbCompile.cpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj3_repo/Build.bat",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj4/Build.bat",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj4/External/stb_9d9f75e/Includes/stb_image.h",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj2/StatRunner/Source/main.cpp",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/01_dPASM_Common/Source/Common/Dev/exception.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj4/Source/App/app - Copy.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/Utils/Swap.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/Utils/ArrayCopy.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/Utils/Utils.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/5_BubbleSort.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/6_QuickSort_backup.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS325_assignment5/com.johannesmp.daysuntil/README.md",
+		"/C/Users/Jo/Desktop/Sandbox/CS325_assignment5/com.johannesmp.daysuntil/CNAME.md",
+		"/C/Users/Jo/Desktop/Sandbox/CS325_assignment5/com.johannesmp.gpacalc/index.html",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/3_PrintChars.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/2_IsNumEven.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/0_DBVars.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/1_PrintVar.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/VALIDATE_Parse.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/temp.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/01_dPASM_Common/01_dPASM_Common.vcxproj",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/dPASM.sln",
+		"/C/Users/Jo/Desktop/Sandbox/com.johannesmp.blog/index.html",
+		"/C/Users/Jo/Desktop/Sandbox/com.johannesmp.compile/static/js/compiler.js",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/0_DBVars.txt",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/0_PrintVar.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/demo.txt",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/2_PrintChars.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/0_DebugPrintReg.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj2/StatRunner/Source/Utils/string.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/1_IsNumEven.dpasm",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/TestASM/0_DebugPrintReg.txt",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj2/StatRunner/Source/Utils/fs.cpp",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/dPASM_Programs/0_ConsolePrint.txt",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj2/StatRunner/Source/Utils/fs.hpp",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/02_dPASM_Parse/02_dPASM_Parse.vcxproj",
+		"/C/Users/Jo/Documents/Atomineer/Classes.xml",
+		"/C/Users/Jo/Documents/Atomineer/DoxygenTemplates.xml",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/Doxygen/BuildDoxs.bat",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/Doxygen/.gitignore",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/.gitignore",
+		"/C/Users/Jo/Documents/Atomineer/NaturalTemplates.xml",
+		"/C/Users/Jo/Documents/Atomineer/Prefs.xml",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/AssemblerBackend/Backend.sln",
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/AssemblerBackend/01_AssemblyOperations/01_AssemblyOperations.vcxproj",
+		"/C/Users/Jo/Desktop/Sandbox/CS375_InfixCalculator/main.cpp",
+		"/J/CellProcess/temp0.png",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj3_repo/project_gmake/mat345_proj3.make",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj3_repo/Resources_Results/Step1a_weights.txt",
+		"/C/Users/Jo/Downloads/MAT345_Proj3 - Step2a_passFail.csv",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj3_repo/Resources_Calculated/Step1a_weights.txt",
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj3_repo/project_vs2017/Data_Predicted.csv"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 149.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 38.0
+	},
+	"input":
+	{
+		"height": 63.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 198.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 345.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 190.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
