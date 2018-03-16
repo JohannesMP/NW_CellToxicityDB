@@ -46,7 +46,7 @@ $(document).ready(function() {
 
     chars = str.toUpperCase().split('');
     ret = [];
-    
+
     for(var i = chars.length-1; i >= 0 && ret.length < 6; --i)
     {
       if(['A','C','T','G','U'].includes(chars[i]))
@@ -81,7 +81,7 @@ $(document).ready(function() {
 
   // Allows us to search for miRNA strings with or without dashes.
   var FilterMiRNAString = function(str) {
-    return str.replace("-","").toLowerCase();
+    return str.replace(/-/g,"").toLowerCase();
   }
 
 
@@ -337,11 +337,14 @@ $(document).ready(function() {
       let input = mirnaSearchEl.val();
       let filtered = FilterMiRNAString(input);
       let seed;
+      console.log(filtered);
 
       if(filtered in dataStore.mi_rnaMap)
         seed = dataStore.mi_rnaMap[filtered].seed;
       else if(input in dataStore.mi_accMap)
         seed = dataStore.mi_accMap[input].seed;
+      else
+        console.log("none");
 
       if(seed != undefined)
       {
