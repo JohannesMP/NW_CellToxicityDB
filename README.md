@@ -23,7 +23,8 @@ Gao, Q.Q., Putzbach, W.E., Murmann, A.E., Chen, S., Sarshad, A.A., Ambrosini, G.
 ## Libraries Used
 
 - [JQuery 3.3.1](https://jquery.com/): Dom manipulation
-- [D3 4.13.0](https://d3js.org/): CSV loading and data visualization 
+- [D3 4.13.0](https://d3js.org/): CSV loading and data visualization
+- [Async 2.6.0](https://caolan.github.io/async/): Asynchronous javascript
 - [Bootstrap 4.0.0](https://getbootstrap.com/): UI Framework
 - [Bootstrap Toggle 2.2.2](http://www.bootstraptoggle.com/): easy smartphone-style toggles
 - [DataTables 1.10.16](https://datatables.net/): table UI and data manipulation
