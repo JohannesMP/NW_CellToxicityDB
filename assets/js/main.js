@@ -188,6 +188,8 @@ $(document).ready(function() {
       stateSave: true,
       lengthMenu: [ [ 10, 50, 100, 500, -1], 
                     [ 10, 50, 100, 500, "All (slow)"] ],
+      order: [6, 'asc'],    
+
       columns: [
         // Seed
         { data: "seed", title: seedHeaders.seed, searchable: true,  
