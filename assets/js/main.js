@@ -152,7 +152,9 @@ $(document).ready(function() {
             // if(data == "AAAAAA")
             //   console.log("render");
             return `<span class="seq-rna"><a href="#${DNAtoRNA(data)}">
-              ${DNAtoRNA(data) + Math.floor(Math.random()*5)}
+              ${DNAtoRNA(data) 
+                //+ Math.floor(Math.random()*5)
+              }
             </a></span>`;
           } 
         },
@@ -266,7 +268,7 @@ $(document).ready(function() {
     // Handle user manually changing hash string
     if("onhashchange" in window) {
       window.addEventListener("hashchange", () => {
-        console.log("Hash String Was Change");
+        //console.log("Hash String Changed");
 
         let newVal = GetSequenceFromHash();
         if(newVal === searchEl.val())
