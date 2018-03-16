@@ -185,7 +185,10 @@ div.dataTables_wrapper div.dataTables_info {
 
 th.h-std {
   font-weight: normal;
+  white-space: nowrap;
+  overflow:    hidden;
 }
+/* Centering */
 .h-via, .h-std, .h-avg {
   text-align: center;
 }

@@ -149,7 +149,11 @@ $(document).ready(function() {
         { data: "seed", title: "Seed", searchable: true,  
           orderable: true,  className: "h-seed", 
           render: function ( data, type, row, meta ) { 
-            return `<span class="seq-rna"><a href="#${DNAtoRNA(data)}">${DNAtoRNA(data)}</a></span>`
+            // if(data == "AAAAAA")
+            //   console.log("render");
+            return `<span class="seq-rna"><a href="#${DNAtoRNA(data)}">
+              ${DNAtoRNA(data) + Math.floor(Math.random()*5)}
+            </a></span>`;
           } 
         },
         // miRNA stats
@@ -161,16 +165,16 @@ $(document).ready(function() {
         },
         // Vitality 1
         { data: "via1", title: "Viability HeyA8 (%)", searchable: false, 
-          orderable: true, className: "h-via", render: renderNumColorRange },
+          orderable: true, className: "h-via ", render: renderNumColorRange },
         // STDEV 1
         { data: "std1", title: "STDEV HeyA8", searchable: false, 
-          orderable: false, className: "h-std", render: renderNum  },
+          orderable: false, className: "h-std d-none d-lg-block", render: renderNum  },
         // Vitality 2
         { data: "via2", title: "Viability M565 (%)", searchable: false, 
           orderable: true,  className: "h-via", render: renderNumColorRange  },
         // STDEv 2
         { data: "std2", title: "STDEV M565", searchable: false, 
-          orderable: false, className: "h-std", render: renderNum  },
+          orderable: false, className: "h-std d-none d-lg-block", render: renderNum  },
         // Average
         { data: "avg",  title: "Average (%)",  searchable: false, 
           orderable: true,  className: "h-avg", render: renderNumColorRange  },
