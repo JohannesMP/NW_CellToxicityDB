@@ -30,3 +30,8 @@ Gao, Q.Q., Putzbach, W.E., Murmann, A.E., Chen, S., Sarshad, A.A., Ambrosini, G.
 - [FileSaverJS 1.3.5](https://github.com/eligrey/FileSaver.js/) and [BlobJS](https://github.com/eligrey/Blob.js): Fallback for local file saving
 - [FontAwesome 5.0.8 (Free)](https://fontawesome.com/): Icons
 - [Google Analytics](https://www.google.com/analytics)
+
+
+## License
+
+This project is available under the [MIT license](https://github.com/JohannesMP/NW_CellToxicityDB/blob/master/LICENSE).
