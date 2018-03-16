@@ -2,6 +2,7 @@ const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
 
 // for console debugging
+var dataStore;
 var table;
 var filteredRowCount;
 var filteredRowData;
@@ -25,8 +26,10 @@ $(document).ready(function() {
   {
     modeEl.bootstrapToggle('disable');
     modeEl.parent().addClass('disabled')
-    modeEl.parent().find('.btn').each( (index, value) => {$(value).addClass('disabled'); } );
+    modeEl.parent().find('.btn').each( (index, value) => {
+      $(value).addClass('disabled'); } );
   }
+
   // given a potential input seed, cleans it up
   // - Can only be 6 chars long
   // - All uppercase
@@ -68,18 +71,55 @@ $(document).ready(function() {
     return raw;
   }
 
-  d3.csv("data/6Mer_Data.csv")
-    .row( r => { return new Mer6(r); })
-    .get( (error, dataArr) => {
-      if(error) throw error;
 
-      // A lookup map of seed to index
-      let dataMap = {};
-      for(var i = 0; i < dataArr.length; ++i)
-        dataMap[dataArr[i].seed] = +i;
+  async.parallel(
+    // Asynchronous loading of data
+    [
+      // load seed data
+      (callback) => {
+        d3.csv("data/seed_viability.csv")
+          .row( r => { return new Mer6(r); })
+          .get( callback );
+      },
 
-      InitTable(dataArr, dataMap)
+      // load miRNA data
+      (callback) => {
+        d3.csv("data/miRNA_data.csv")
+          .row( r => {return r;} )
+          .get( callback );
+      }
+    ], 
+
+    // once loaded, process data
+    (err, results) => {
+      if(err) {
+        console.error(err);
+        return;
+      }
+
+      // set up our data storage
+      dataStore = {
+        seedArr   : results[0],
+        seedMap   : {},
+        mi_rnaArr : results[1],
+        mi_rnaMap : {},
+      }
+
+      // A lookup map of seed to its data
+      for(var i = 0; i < dataStore.seedArr.length; ++i)
+        dataStore.seedMap[dataStore.seedArr[i].seed] = dataStore.seedArr[i];
+
+      // A lookup map of mi_rna to its data
+      for(var i = 0; i < dataStore.mi_rnaArr.length; ++i) {
+        let id = dataStore.mi_rnaArr[i].mi_rna;
+        dataStore.mi_rnaMap[id] = dataStore.mi_rnaArr[i];
+        dataStore.seedMap[dataStore.mi_rnaArr[i].seed].mi_rna.push(id);
+      }
+
+      InitTable(dataStore);
     });
+
+
 
   // print a number rounded to one decimal place
   var renderNum = function( data, type, row, meta ) {
@@ -123,20 +163,20 @@ $(document).ready(function() {
   }
 
 
-  var InitTable = function(dataArr, dataMap) {
+  var InitTable = function(dataset) {
     loadingEl.remove();
 
     table = tableEl.DataTable({
-      data: dataArr,
+      data: dataset.seedArr,
       dom: `
-  <"row t-controls"
-    <"col" <"float-left" l > <"float-right" p > <"float-left" i > >
-  >
-  <"row t-processing" r>
-  <"t-table" t>
-  <"row t-controls"
-    <"col" <"float-left" l > <"float-right" p > <"float-left" i > >
-  >`,
+<"row t-controls"
+  <"col" <"float-left" l > <"float-right" p > <"float-left" i > >
+>
+<"row t-processing" r>
+<"t-table" t>
+<"row t-controls"
+  <"col" <"float-left" l > <"float-right" p > <"float-left" i > >
+>`,
       paging: true,
       search: { smart: false },
       searchDelay: 100,
@@ -146,53 +186,59 @@ $(document).ready(function() {
                     [ 10, 50, 100, 500, "All (slow)"] ],
       columns: [
         // Seed
-        { data: "seed", title: "Seed", searchable: true,  
+        { data: "seed", title: seedHeaders.seed, searchable: true,  
           orderable: true,  className: "h-seed", 
           render: function ( data, type, row, meta ) { 
-            // if(data == "AAAAAA")
-            //   console.log("render");
-            return `<span class="seq-rna"><a href="#${DNAtoRNA(data)}">
-              ${DNAtoRNA(data) 
-                //+ Math.floor(Math.random()*5)
-              }
-            </a></span>`;
+            return `<span class="seq-rna"><a href="#${DNAtoRNA(data)}">${DNAtoRNA(data)}</a></span>`;
           } 
         },
         // miRNA stats
-        { data: function() {return"0 (temp)";} , title: "miRNA", searchable: false, 
+        { data: "mi_rna" , title: seedHeaders.mi_rna, searchable: false, 
           orderable: true, className: "h-mir", render: 
-            function( data, type, row, meta ) {
-              return data;
-            }
+            function( data, type, row, meta ) { return data.length }
         },
         // Vitality 1
-        { data: "via1", title: "Viability HeyA8 (%)", searchable: false, 
+        { data: "via1", title: seedHeaders.via1, searchable: false, 
           orderable: true, className: "h-via ", render: renderNumColorRange },
         // STDEV 1
-        { data: "std1", title: "STDEV HeyA8", searchable: false, 
+        { data: "std1", title: seedHeaders.std1, searchable: false, 
           orderable: false, className: "h-std d-none d-lg-block", render: renderNum  },
         // Vitality 2
-        { data: "via2", title: "Viability M565 (%)", searchable: false, 
+        { data: "via2", title: seedHeaders.via2, searchable: false, 
           orderable: true,  className: "h-via", render: renderNumColorRange  },
         // STDEv 2
-        { data: "std2", title: "STDEV M565", searchable: false, 
+        { data: "std2", title: seedHeaders.std2, searchable: false, 
           orderable: false, className: "h-std d-none d-lg-block", render: renderNum  },
         // Average
-        { data: "avg",  title: "Average (%)",  searchable: false, 
+        { data: "avg",  title: seedHeaders.avg,  searchable: false, 
           orderable: true,  className: "h-avg", render: renderNumColorRange  },
       ],
       fixedHeader: {
-          header: true,
-          footer: true
+        header: true,
+        footer: true
       }
     });
 
-    // Inject sub-rows for each row
-    // table.rows().every(function(row_index) {
-    //   let row = table.row(row_index);
-    //   row.child("<ul><li>1</li><li>2</li></ul>").show();
-    // });
+    table.rows().every(function(row_index) {
+      let row = table.row(row_index);
+      let data = row.data();
 
+      if(data.mi_rna.length == 0)
+        return;
+
+      let str = "";
+      for(let i = 0; i < data.mi_rna.length; ++i)
+      {
+        let id = data.mi_rna[i];
+        let acc = dataStore.mi_rnaMap[id].accession;
+        let url = `http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=${acc}`;
+        str += `<a href="${url}"><div class="badge badge-light">${id}</div></a>`;
+      }
+      row.child('<div class="mi-rna">' + str + '</div>').show();
+    });
+
+
+    // mouse-over potentially
     tableEl.find("tbody")
       .on('mouseenter', 'td', function() {
         var index = table.cell(this).index();
@@ -248,7 +294,7 @@ $(document).ready(function() {
     });
 
     saveButtonEl.on('click', (e) => {
-      let csvData = dataArr.columns.join(",") + "," + TableHeaders.avg + "\n";
+      let csvData = dataArr.columns.join(",") + "," + seedHeaders.avg + "\n";
       for(var i = 0; i < filteredRowCount; ++i)
         csvData += filteredRowData[i].toCSVRow();
 

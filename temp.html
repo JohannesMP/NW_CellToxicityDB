@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+
+
+  <!-- JQuery -->
+  <script src="assets/vendor/jquery-3.3.1/jquery.min.js"></script>
+
+  <!-- Async -->
+  <script src="assets/vendor/async-2.6.0/async.min.js"></script>
+
+  <!-- D3.js -->
+  <script src="assets/vendor/d3-4.13.0/d3.min.js"></script>
+
+  <!-- BlobJS - FileSaverJS dependency -->
+  <script src="assets/vendor/blobjs/blob.js"></script>
+  <!-- FileSaverJS - More support for older browsers -->
+  <script src="assets/vendor/filesaverjs-1.3.5/filesaver.js"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-4.0.0/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- Bootstrap Toggle -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-toggle-2.2.2/css/bootstrap-toggle.min.css">
+  <script src="assets/vendor/bootstrap-toggle-2.2.2/js/bootstrap-toggle.min.js"></script>
+
+  <!-- DataTables -->
+  <link rel="stylesheet" href="assets/vendor/datatables-1.10.16/css/datatables.min.css">
+  <script src="assets/vendor/datatables-1.10.16/js/datatables.min.js"></script>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free-5.0.8/css/fontawesome-all.min.css">
+</head>
+<body>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script>
+    // Global container for easier debugging
+    let dataStore = {};
+
+    $(document).ready(() => {
+
+
+      async.parallel(
+        // Asynchronous loading of data
+        [
+          // load seed data
+          (callback) => {
+            d3.csv("data/seed_viability.csv")
+              .row( r => { return new Mer6(r); })
+              .get( callback );
+          },
+
+          // load miRNA data
+          (callback) => {
+            d3.csv("data/miRNA_data.csv")
+              .row( r => {return r;} )
+              .get( callback );
+          }
+        ], 
+
+        // once loaded, process data
+        (err, results) => {
+          if(err) {
+            console.error(err);
+            return;
+          }
+
+          // set up our datastorage
+          dataStore = {
+            seedArr   : results[0],
+            seedMap   : {},
+            mi_rnaArr : results[1],
+            mi_rnaMap : {},
+          }
+
+          // A lookup map of seed to its data
+          for(var i = 0; i < dataStore.seedArr.length; ++i)
+            dataStore.seedMap[dataStore.seedArr[i].seed] = dataStore.seedArr[i];
+
+          // A lookup map of mi_rna to its data
+          for(var i = 0; i < dataStore.mi_rnaArr.length; ++i) {
+            let id = dataStore.mi_rnaArr[i].mi_rna;
+            dataStore.mi_rnaMap[id] = dataStore.mi_rnaArr[i];
+            dataStore.seedMap[dataStore.mi_rnaArr[i].seed].mi_rna.push(id);
+          }
+
+          console.log(dataStore);
+        });
+    });
+  </script>
+</body>
+</html>

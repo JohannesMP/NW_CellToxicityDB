@@ -48,17 +48,17 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 195.0,
-		"last_filter": "sidebar",
+		"height": 345.0,
+		"last_filter": "html",
 		"selected_items":
 		[
 			[
-				"sidebar",
-				"View: Toggle Open Files in Side Bar"
-			],
-			[
 				"html",
 				"Set Syntax: HTML"
+			],
+			[
+				"sidebar",
+				"View: Toggle Open Files in Side Bar"
 			],
 			[
 				"javascri",
@@ -243,6 +243,11 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Jo/Desktop/Sandbox/WebRepos/NW_CellToxicityDB/assets/css/main.css",
+		"/C/Users/Jo/Desktop/Sandbox/WebRepos/NW_CellToxicityDB/data/miRNA_data.csv",
+		"/C/Users/Jo/Dropbox/Files for 6merdb/Data/miRNA_data_2018-03-15.csv",
+		"/C/Users/Jo/Dropbox/Files for 6merdb/Data/seed_viability_2018-03-15.csv",
+		"/C/Users/Jo/Desktop/Sandbox/WebRepos/NW_CellToxicityDB/assets/vendor/datatables-1.10.16/css/datatables.min.css",
 		"/C/Users/Jo/Desktop/VR/ChaperoneTweak/Readme.txt",
 		"/C/Users/Jo/AppData/Local/Temp/Temp1_bootstrap-4.0.0-dist (1).zip/css/bootstrap.css",
 		"/C/Users/Jo/Desktop/Sandbox/WebRepos/NW_CellToxicityDB/data/6Mer_Data.csv",
@@ -365,12 +370,7 @@
 		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/.gitignore",
 		"/C/Users/Jo/Documents/Atomineer/NaturalTemplates.xml",
 		"/C/Users/Jo/Documents/Atomineer/Prefs.xml",
-		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/AssemblerBackend/Backend.sln",
-		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/AssemblerBackend/01_AssemblyOperations/01_AssemblyOperations.vcxproj",
-		"/C/Users/Jo/Desktop/Sandbox/CS375_InfixCalculator/main.cpp",
-		"/J/CellProcess/temp0.png",
-		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj3_repo/project_gmake/mat345_proj3.make",
-		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj3_repo/Resources_Results/Step1a_weights.txt"
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/AssemblerBackend/Backend.sln"
 	],
 	"find":
 	{
@@ -388,6 +388,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"datastorage",
+			"mirnaArr",
+			"data",
+			"filteredRowCount",
+			",\n",
+			"dataMap",
+			"TableHeaders",
+			"numRender",
 			"select",
 			":focus"
 		],
@@ -421,11 +429,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.970131421744,
 			1.0
 		],
 		"rows":
