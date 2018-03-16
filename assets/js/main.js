@@ -174,7 +174,11 @@ $(document).ready(function() {
         // Average
         { data: "avg",  title: "Average (%)",  searchable: false, 
           orderable: true,  className: "h-avg", render: renderNumColorRange  },
-      ]
+      ],
+      fixedHeader: {
+          header: true,
+          footer: true
+      }
     });
 
     // Inject sub-rows for each row
