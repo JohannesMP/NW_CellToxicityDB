@@ -43,19 +43,22 @@ $(document).ready(function() {
   {
     if(len === undefined)
       len = str.length;
-    var chars = str.substring(0,len).toUpperCase().split('');
-    for(var i = 0; i < chars.length; ++i)
+
+    chars = str.toUpperCase().split('');
+    ret = [];
+    
+    for(var i = chars.length-1; i >= 0 && ret.length < 6; --i)
     {
-      if(!['A','C','T','G','U'].includes(chars[i]))
+      if(['A','C','T','G','U'].includes(chars[i]))
       {
-        chars.splice(i,1);
-        --i;
+        if(chars[i] == 'T') 
+          ret.push('U');
+        else
+          ret.push(chars[i]);
       }
-      else if(chars[i] == 'T') 
-        chars[i] = 'U';
     }
 
-    return chars.join('');
+    return ret.reverse().join('');
   }
 
   var GetModeFromHash = function() {
@@ -74,6 +77,11 @@ $(document).ready(function() {
 
     return location.hash.substring(i+1);
     return raw;
+  }
+
+  // Allows us to search for miRNA strings with or without dashes.
+  var FilterMiRNAString = function(str) {
+    return str.replace("-","").toLowerCase();
   }
 
 
@@ -118,7 +126,7 @@ $(document).ready(function() {
       // A lookup map of mi_rna to its data
       for(var i = 0; i < dataStore.mi_rnaArr.length; ++i) {
         let item = dataStore.mi_rnaArr[i];;
-        dataStore.mi_rnaMap[item.mi_rna] = item;
+        dataStore.mi_rnaMap[FilterMiRNAString(item.mi_rna)] = item;
         dataStore.mi_accMap[item.accession] = item;
         dataStore.seedMap[item.seed].mi_rna.push(item.mi_rna);
       }
@@ -239,7 +247,7 @@ $(document).ready(function() {
       for(let i = 0; i < data.mi_rna.length; ++i)
       {
         let id = data.mi_rna[i];
-        let acc = dataStore.mi_rnaMap[id].accession;
+        let acc = dataStore.mi_rnaMap[FilterMiRNAString(id)].accession;
         let url = `http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=${acc}`;
         str += `<a href="${url}"><div class="badge badge-light">${id}</div></a>`;
       }
@@ -300,7 +308,8 @@ $(document).ready(function() {
 
       console.log(`Searching for: ${DNAtoRNA(content)}`);
       regExSearch = ".*" + DNAtoRNA(content) + ".*";
-      table.column(0).search(regExSearch, true, false).draw();
+      var result = table.column(0).search(regExSearch, true, false);
+      result.draw();
     }
 
     // Store filtered rows for saving
@@ -321,14 +330,16 @@ $(document).ready(function() {
     seedSearchEl.on('input', (e) => {
       // console.log("On Search Input");
       PerformSeedSearch();
+      mirnaSearchEl.val("");
     });
 
     mirnaSearchEl.on('input', (e) => {
       let input = mirnaSearchEl.val();
+      let filtered = FilterMiRNAString(input);
       let seed;
 
-      if(input in dataStore.mi_rnaMap)
-        seed = dataStore.mi_rnaMap[input].seed;
+      if(filtered in dataStore.mi_rnaMap)
+        seed = dataStore.mi_rnaMap[filtered].seed;
       else if(input in dataStore.mi_accMap)
         seed = dataStore.mi_accMap[input].seed;
 
