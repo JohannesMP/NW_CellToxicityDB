@@ -61,7 +61,7 @@ Mer6.prototype.toArray = function() {
     this.via2,
     this.std2,
     this.avg,
-    this.mi_rna.join(","),
+    `"${this.mi_rna.join(",")}"`,
   ];
 }
 
