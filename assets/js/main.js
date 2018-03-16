@@ -256,6 +256,14 @@ $(document).ready(function() {
       row.child().find("td").attr("colspan", 20);
     });
 
+    console.log("foo");
+    table.on( 'draw', function () {
+        var body = $( table.table().body() );
+        body.unhighlight();
+        if ( table.rows( { filter: 'applied' } ).data().length ) {
+          body.highlight( table.search() );
+        } 
+      } );
 
     // mouse-over potentially
     tableEl.find("tbody")
@@ -315,7 +323,8 @@ $(document).ready(function() {
     // Store filtered rows for saving
     table.on('search.dt', function() {
       filteredRowCount = table.rows( { filter : 'applied'} ).nodes().length;
-      filteredRowData  = table.rows( { filter : 'applied'} ).data();    
+      filteredRowData  = table.rows( { filter : 'applied'} ).data();
+      filteredRowData.columns = dataStore.seedArr.columns;
     });
     
     // Check hash for data 
@@ -364,17 +373,15 @@ $(document).ready(function() {
     });
 
     saveButtonEl.on('click', (e) => {
-      // let csvData = dataArr.columns.join(",") + "," + seedHeaders.avg + "\n";
-      // for(var i = 0; i < filteredRowCount; ++i)
-      //   csvData += filteredRowData[i].toCSVRow();
-      let csvData = Mer6ArrayToCSV(dataStore.seedArr);
+      let csvData = Mer6ArrayToCSV(filteredRowData);
 
       var filterStr = seedSearchEl.val();
       if(filterStr == "")
         filterStr = "all";
       var csvFileName = `6mer_${filterStr}.csv`
 
-      if (window.navigator.msSaveOrOpenBlob)  // IE hack; see http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
+      // IE hack; see http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
+      if (window.navigator.msSaveOrOpenBlob)
           window.navigator.msSaveBlob(csvData, csvFileName);
       // save using FileSaver.js
       else

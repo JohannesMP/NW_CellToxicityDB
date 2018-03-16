@@ -12,6 +12,8 @@
 
   <!-- JQuery -->
   <script src="assets/vendor/jquery-3.3.1/jquery.min.js"></script>
+  <!-- JQuery Highlight -->
+  <script src="assets/vendor/jquery-highlight/jquery.highlight.min.js"></script>
 
   <!-- Async -->
   <script src="assets/vendor/async-2.6.0/async.min.js"></script>
@@ -35,6 +37,9 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="assets/vendor/datatables-1.10.16/css/datatables.min.css">
   <script src="assets/vendor/datatables-1.10.16/js/datatables.min.js"></script>
+  <!-- DataTables SearchHighlight -->
+  <link rel="stylesheet" href="assets/vendor/datatables-searchHighlight-1.0.1/css/dataTables.searchHighlight.css">
+  <script src="assets/vendor/datatables-searchHighlight-1.0.1/js/dataTables.searchHighlight.min.js"></script>
 
   <!-- FontAwesome -->
   <link rel="stylesheet" href="assets/vendor/fontawesome-free-5.0.8/css/fontawesome-all.min.css">
@@ -121,7 +126,7 @@
               <h5>Data is loading...</h5>
               <h1><i id="loader"class="fas fa-circle-notch"></i></h1>
             </div>
-            <table id="data-table" class="display table-striped dataTables mode-rna" width="100%" data-page-length='100'></table>
+            <table id="data-table" class="display table-striped dataTables searchHighlight mode-rna" width="100%" data-page-length='100'></table>
           </div>
         </div> <!-- #table.card -->
       </div>
