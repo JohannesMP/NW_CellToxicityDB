@@ -6,7 +6,7 @@ const seedHeaders = {
   via2   : "Cell viability M565 (%)",
   std2   : "STDEV (M565)",
   avg    : "Average viability (%)",     // calculated when needed from via1, via2
-  mi_rna : "miRNA",                     // filled in later 
+  mi_rna : "miRNAs",                    // filled in later 
 };
 
 

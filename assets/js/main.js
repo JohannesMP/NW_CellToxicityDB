@@ -17,14 +17,15 @@ $(document).ready(function() {
   let tableEl       = $('#data-table');
   let settingsEl    = $('#settings-content');
   let searchBoxEl   = $('#data-search-box');
-  let searchEl      = $('#data-search-field');
+  let seedSearchEl  = $('#data-seed-field');
+  let mirnaSearchEl = $('#data-mirna-field');
+
   let modeBoxEl     = $('#data-mode-box');
   let modeEl        = $('#data-mode-field');
   let resetButtonEl = $('#reset-button');
   let saveButtonEl  = $('#save-button');
   let loadingEl     = $('#loading-display');
   let toggleMiEl    = $('#data-mirna-toggle');
-
 
   if(showModeToggle)
   {
@@ -107,6 +108,7 @@ $(document).ready(function() {
         seedMap   : {},
         mi_rnaArr : results[1],
         mi_rnaMap : {},
+        mi_accMap : {},
       }
 
       // A lookup map of seed to its data
@@ -115,9 +117,10 @@ $(document).ready(function() {
 
       // A lookup map of mi_rna to its data
       for(var i = 0; i < dataStore.mi_rnaArr.length; ++i) {
-        let id = dataStore.mi_rnaArr[i].mi_rna;
-        dataStore.mi_rnaMap[id] = dataStore.mi_rnaArr[i];
-        dataStore.seedMap[dataStore.mi_rnaArr[i].seed].mi_rna.push(id);
+        let item = dataStore.mi_rnaArr[i];;
+        dataStore.mi_rnaMap[item.mi_rna] = item;
+        dataStore.mi_accMap[item.accession] = item;
+        dataStore.seedMap[item.seed].mi_rna.push(item.mi_rna);
       }
 
       InitTable(dataStore);
@@ -266,8 +269,8 @@ $(document).ready(function() {
 
     $(".mi-rna-toggle").html(`<input class="data-mirna-toggle" type="checkbox" checked data-toggle="toggle">`);
     $(".data-mirna-toggle").bootstrapToggle({
-        on: '<span class="d-none d-md-inline">show </span>miRNAs',
-        off: '<span class="d-none d-md-inline">hide </span>miRNAs',
+        on: '<span class="d-none d-md-inline">hide </span>miRNAs',
+        off: '<span class="d-none d-md-inline">show </span>miRNAs',
         offstyle: 'secondary',
         size: 'small',
       })
@@ -288,9 +291,9 @@ $(document).ready(function() {
       });
 
     // Helper function to sanitize search field and update table
-    var PerformSearch = function(updateHash) {
-      let content = SanitizeSequence(searchEl.val(), 6);
-      searchEl.val(content);
+    var PerformSeedSearch = function(updateHash) {
+      let content = SanitizeSequence(seedSearchEl.val(), 6);
+      seedSearchEl.val(content);
 
       if(updateHash === undefined || updateHash === true)
         location.hash = content;
@@ -312,12 +315,28 @@ $(document).ready(function() {
     if(initialSearch === "")
       initialSearch = table.state().search.search;
     // Update Search field
-    searchEl.val(initialSearch);
-    PerformSearch();
+    seedSearchEl.val(initialSearch);
+    PerformSeedSearch();
 
-    searchEl.on('input', (e) => {
+    seedSearchEl.on('input', (e) => {
       // console.log("On Search Input");
-      PerformSearch();
+      PerformSeedSearch();
+    });
+
+    mirnaSearchEl.on('input', (e) => {
+      let input = mirnaSearchEl.val();
+      let seed;
+
+      if(input in dataStore.mi_rnaMap)
+        seed = dataStore.mi_rnaMap[input].seed;
+      else if(input in dataStore.mi_accMap)
+        seed = dataStore.mi_accMap[input].seed;
+
+      if(seed != undefined)
+      {
+        seedSearchEl.val(seed);
+        PerformSeedSearch();
+      }
     });
 
     resetButtonEl.on('click' , (e) => {
@@ -335,7 +354,7 @@ $(document).ready(function() {
       for(var i = 0; i < filteredRowCount; ++i)
         csvData += filteredRowData[i].toCSVRow();
 
-      var filterStr = searchEl.val();
+      var filterStr = seedSearchEl.val();
       if(filterStr == "")
         filterStr = "all";
       var csvFileName = `6mer_${filterStr}.csv`
@@ -354,17 +373,19 @@ $(document).ready(function() {
         //console.log("Hash String Changed");
 
         let newVal = GetSequenceFromHash();
-        if(newVal === searchEl.val())
+        if(newVal === seedSearchEl.val())
           return;
 
-        searchEl.val(newVal);
-        PerformSearch();
+        seedSearchEl.val(newVal);
+        PerformSeedSearch();
       });
 
       // Everything is set up, show settings
-      searchEl.prop("disabled", false);
+      seedSearchEl.prop("disabled", false);
+      mirnaSearchEl.prop("disabled", false);
       resetButtonEl.prop("disabled", false);
       saveButtonEl.prop("disabled", false);
+
     }
   }
 

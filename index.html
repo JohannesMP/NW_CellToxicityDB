@@ -75,25 +75,53 @@
       <div class="col">
         <div class="card">
           <div class="card-header">
-            
-            <div id="data-search-box" class="input-group float-left">
-              <!-- <div class="input-group-prepend">
-                <label for="data-search-field" class="col-form-label">Filter:</label>
-              </div> -->
-              <input id="data-search-field" type="search" class="form-control" placeholder="Enter Nucleotides to Filter..." disabled>
+            <div id="data-search-box" class="form-row ">
+              
+              <div class="col">
+                <div class="form-row">
+                  <div class="col-md-auto">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <label for="data-seed-field" class="input-group-text">Seed</label>
+                      </div>
+                      <input type="text" id="data-seed-field" class="form-control" aria-describedby="data-seed-field-help" placeholder="Nucleotides" disabled>
+                    </div>
+                    <small id="data-seed-field-help" class="form-text text-muted">
+                      seed filter help text
+                    </small>
+                  </div>
 
-              <div id="data-buttons" class="input-group-append">
-                <!-- <input id="data-mode-field" type="checkbox" checked data-toggle="toggle" data-off="DNA (ACGT)" data-on="RNA (ACGU)" data-onstyle="success" data-offstyle="primary" disabled> -->
-
-                <button id="reset-button" class="btn btn-danger" disabled>Clear</button>
+                  <div class="col">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <label for="data-mirna-field" class="input-group-text">miRNA</label>
+                      </div>
+                      <input type="text" id="data-mirna-field" class="form-control" aria-describedby="data-mirna-field-help" placeholder="id or Mature Acc" disabled>
+                    </div>
+                    <small id="data-mirna-field-help" class="form-text text-muted">
+                      miRNA filter help text
+                    </small>
+                  </div>
+                </div>
               </div>
-                <button id="save-button" class="btn btn-success" disabled><i class="fas fa-download" ></i><span class="d-none d-md-inline"> Download CSV</span></button>
+
+              <div class="col-sm-auto">
+                <div class="form-row">
+                  <div class="col-auto">
+                    <button id="reset-button" class="btn btn-danger" >Reset</button>
+                  </div>
+                  <div class="col-auto">
+                    <button id="save-button" class="btn btn-success" disabled><i class="fas fa-download" ></i><span class="d-none d-lg-inline"> Download CSV</span></button>
+                  </div>
+                </div>
+              </div>
+
             </div>
-
           </div>
-          <div id="table-box" class="card-body">
-  <!--           <input id="data-mirna-toggle" type="checkbox" checked data-toggle="toggle" data-off="Hide Hidden" data-on="miRNA Visible" data-onstyle="success" data-offstyle="primary" disabled>  -->
 
+        
+
+          <div id="table-box" class="card-body">
 
             <div id="loading-display" class="my-5 py-5 text-center">
               <h5>Data is loading...</h5>
