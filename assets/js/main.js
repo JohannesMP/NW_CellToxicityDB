@@ -269,8 +269,8 @@ $(document).ready(function() {
 
     $(".mi-rna-toggle").html(`<input class="data-mirna-toggle" type="checkbox" checked data-toggle="toggle">`);
     $(".data-mirna-toggle").bootstrapToggle({
-        on: '<span class="d-none d-md-inline">hide </span>miRNAs',
-        off: '<span class="d-none d-md-inline">show </span>miRNAs',
+        on: 'hide miRNAs',
+        off: 'show miRNAs',
         offstyle: 'secondary',
         size: 'small',
       })
