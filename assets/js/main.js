@@ -350,9 +350,10 @@ $(document).ready(function() {
     });
 
     saveButtonEl.on('click', (e) => {
-      let csvData = dataArr.columns.join(",") + "," + seedHeaders.avg + "\n";
-      for(var i = 0; i < filteredRowCount; ++i)
-        csvData += filteredRowData[i].toCSVRow();
+      // let csvData = dataArr.columns.join(",") + "," + seedHeaders.avg + "\n";
+      // for(var i = 0; i < filteredRowCount; ++i)
+      //   csvData += filteredRowData[i].toCSVRow();
+      let csvData = Mer6ArrayToCSV(dataStore.seedArr);
 
       var filterStr = seedSearchEl.val();
       if(filterStr == "")
