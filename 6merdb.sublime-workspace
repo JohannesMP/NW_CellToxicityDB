@@ -243,6 +243,9 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Jo/Desktop/VR/ChaperoneTweak/Readme.txt",
+		"/C/Users/Jo/AppData/Local/Temp/Temp1_bootstrap-4.0.0-dist (1).zip/css/bootstrap.css",
+		"/C/Users/Jo/Desktop/Sandbox/WebRepos/NW_CellToxicityDB/data/6Mer_Data.csv",
 		"/C/Users/Jo/AppData/Roaming/Factorio/mods/mod-list.json",
 		"/C/Users/Jo/Documents/MobaXterm/slash/RemoteFiles/133068_2_0/config-path.cfg",
 		"/C/Users/Jo/Google Drive/Academic/2018 - 1_Spring/CS212/cs212_week08_Notes01F.txt",
@@ -367,14 +370,11 @@
 		"/C/Users/Jo/Desktop/Sandbox/CS375_InfixCalculator/main.cpp",
 		"/J/CellProcess/temp0.png",
 		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj3_repo/project_gmake/mat345_proj3.make",
-		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj3_repo/Resources_Results/Step1a_weights.txt",
-		"/C/Users/Jo/Downloads/MAT345_Proj3 - Step2a_passFail.csv",
-		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj3_repo/Resources_Calculated/Step1a_weights.txt",
-		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj3_repo/project_vs2017/Data_Predicted.csv"
+		"/C/Users/Jo/Desktop/Sandbox/MAT345_Proj3_repo/Resources_Results/Step1a_weights.txt"
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 61.0
 	},
 	"find_in_files":
 	{
@@ -388,6 +388,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"select",
+			":focus"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -485,7 +487,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 190.0,
+	"side_bar_width": 246.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

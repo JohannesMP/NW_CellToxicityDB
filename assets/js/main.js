@@ -82,8 +82,44 @@ $(document).ready(function() {
     });
 
   // print a number rounded to one decimal place
-  var numRender = function( data, type, row, meta ) {
+  var renderNum = function( data, type, row, meta ) {
     return Number.parseFloat(data).toFixed(1);
+  }
+
+  var renderNumColorRange = function( data, type, row, meta ) {
+    var val = renderNum(data);
+
+    // No color
+    if(val == 50)
+      return val;
+
+    var rgb_red   = [255,0,0];
+    var rgb_green = [0,255,0];
+
+    var a_low  = 0;
+    var a_high = 0.5;
+
+    var t = 0;
+
+    // Red color
+    if(val < 50) {
+      low  = rgb_red.concat(a_low);
+      high = rgb_red.concat(a_high);
+      t = 1 - (val / 50);
+    }
+
+    // Green color
+    else if(val > 50) {
+      low  = rgb_green.concat(a_low);
+      high = rgb_green.concat(a_high);
+      t = (val / 50) - 1;
+    }
+
+    var rgba = lerpArray(low, high, t);
+   // console.log("val: " + val + ", RGB: " + rgb);
+    var color = `rgba(${rgba[0]},${rgba[1]},${rgba[2]},${rgba[3]})`
+
+    return `<div class="num-wrap" style="background-color: ${color}">${renderNum(data)}</div>`;
   }
 
 
@@ -110,29 +146,53 @@ $(document).ready(function() {
                     [ 10, 50, 100, 500, "All (slow)"] ],
       columns: [
         // Seed
-        { data: "seed", title: TableHeaders.seed, searchable: true,  
+        { data: "seed", title: "Seed", searchable: true,  
           orderable: true,  className: "h-seed", 
           render: function ( data, type, row, meta ) { 
             return `<span class="seq-rna"><a href="#${DNAtoRNA(data)}">${DNAtoRNA(data)}</a></span>`
           } 
         },
+        // miRNA stats
+        { data: function() {return"0 (temp)";} , title: "miRNA", searchable: false, 
+          orderable: true, className: "h-mir", render: 
+            function( data, type, row, meta ) {
+              return data;
+            }
+        },
         // Vitality 1
-        { data: "via1", title: TableHeaders.via1, searchable: false, 
-          orderable: true,  className: "h-via", render: numRender },
+        { data: "via1", title: "Viability HeyA8 (%)", searchable: false, 
+          orderable: true, className: "h-via", render: renderNumColorRange },
         // STDEV 1
-        { data: "std1", title: TableHeaders.std1, searchable: false, 
-          orderable: false, className: "h-std", render: numRender  },
+        { data: "std1", title: "STDEV HeyA8", searchable: false, 
+          orderable: false, className: "h-std", render: renderNum  },
         // Vitality 2
-        { data: "via2", title: TableHeaders.via2, searchable: false, 
-          orderable: true,  className: "h-via", render: numRender  },
+        { data: "via2", title: "Viability M565 (%)", searchable: false, 
+          orderable: true,  className: "h-via", render: renderNumColorRange  },
         // STDEv 2
-        { data: "std2", title: TableHeaders.std2, searchable: false, 
-          orderable: false, className: "h-std", render: numRender  },
+        { data: "std2", title: "STDEV M565", searchable: false, 
+          orderable: false, className: "h-std", render: renderNum  },
         // Average
-        { data: "avg",  title: TableHeaders.avg,  searchable: false, 
-          orderable: true,  className: "h-avg", render: numRender  },
+        { data: "avg",  title: "Average (%)",  searchable: false, 
+          orderable: true,  className: "h-avg", render: renderNumColorRange  },
       ]
     });
+
+    // Inject sub-rows for each row
+    // table.rows().every(function(row_index) {
+    //   let row = table.row(row_index);
+    //   row.child("<ul><li>1</li><li>2</li></ul>").show();
+    // });
+
+    tableEl.find("tbody")
+      .on('mouseenter', 'td', function() {
+        var index = table.cell(this).index();
+        //console.log(index);
+        // $( table.cells().nodes() ).removeClass('highlight');
+        // $( table.rows().nodes() ).removeClass('highlight');
+        // $( table.column(index.column).nodes() ).addClass('highlight');
+        // $( table.row(index.row).node() ).addClass('highlight');
+      });
+
 
     // Helper function to sanitize search field and update table
     var PerformSearch = function(updateHash) {

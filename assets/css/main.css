@@ -183,21 +183,47 @@ div.dataTables_wrapper div.dataTables_info {
   border-color: #43387d;
 }
 
-th.h-std, th.avg {
+th.h-std {
   font-weight: normal;
 }
+.h-via, .h-std, .h-avg {
+  text-align: center;
+}
+
 th.sorting_asc::before, th.sorting_asc::after, th.sorting_desc::before, th.sorting_desc::after {
   font-size: 1.0rem;
 }
 
 th.sorting_asc, 
 th.sorting_desc, 
-td.sorting_1,
 td.sorting_1 .seq-rna a {
   color: #6a2cbe;
 }
+td.sorting_1 {
+  font-weight: 500;
+}
+td.sorting_1 .seq-rna {
+  font-weight: normal;
+}
 td  .seq-rna a {
   color: #212529;
+}
+
+td {
+  position: relative;
+  padding: 0;
+}
+.num-wrap {
+  position:absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  line-height: 1.75rem;
+}
+
+tr:hover td {
+  box-shadow:         inset 0 0 100px rgba(255,255,255,1);
 }
 
 
