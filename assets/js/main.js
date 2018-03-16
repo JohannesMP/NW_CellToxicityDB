@@ -7,6 +7,8 @@ var table;
 var filteredRowCount;
 var filteredRowData;
 
+var show_mirma = true;
+
 var showModeToggle = false;
 
 $(document).ready(function() {
@@ -21,6 +23,8 @@ $(document).ready(function() {
   let resetButtonEl = $('#reset-button');
   let saveButtonEl  = $('#save-button');
   let loadingEl     = $('#loading-display');
+  let toggleMiEl    = $('#data-mirna-toggle');
+
 
   if(showModeToggle)
   {
@@ -170,12 +174,12 @@ $(document).ready(function() {
       data: dataset.seedArr,
       dom: `
 <"row t-controls"
-  <"col" <"float-left" l > <"float-right" p > <"float-left" i > >
+  <"col" <"float-left" l > <"mi-rna-toggle float-left"> <"float-right" p > <"float-left" i > >
 >
 <"row t-processing" r>
 <"t-table" t>
 <"row t-controls"
-  <"col" <"float-left" l > <"float-right" p > <"float-left" i > >
+  <"col" <"float-left" l > <"mi-rna-toggle float-left"> <"float-right" p > <"float-left" i > >
 >`,
       paging: true,
       search: { smart: false },
@@ -235,6 +239,8 @@ $(document).ready(function() {
         str += `<a href="${url}"><div class="badge badge-light">${id}</div></a>`;
       }
       row.child('<div class="mi-rna">' + str + '</div>').show();
+      // ensure correct sizing when small window and scaling up
+      row.child().find("td").attr("colspan", 20);
     });
 
 
@@ -249,6 +255,35 @@ $(document).ready(function() {
         // $( table.row(index.row).node() ).addClass('highlight');
       });
 
+    // Set up toggles for showing/hiding miRNA
+
+    if(show_mirma)
+      tableEl.removeClass("hide-mirma");
+    else
+      tableEl.addClass("hide-mirma");
+
+    $(".mi-rna-toggle").html(`<input class="data-mirna-toggle" type="checkbox" checked data-toggle="toggle">`);
+    $(".data-mirna-toggle").bootstrapToggle({
+        on: '<span class="d-none d-md-inline">show </span>miRNA',
+        off: '<span class="d-none d-md-inline">hide </span>miRNA',
+        offstyle: 'secondary',
+        size: 'small',
+      })
+      .prop('checked', show_mirma).change()
+      .change((evt) => {
+        if($(evt.target).prop('checked') == show_mirma)
+          return;
+        show_mirma = !show_mirma;
+
+        if(show_mirma)
+          tableEl.removeClass("hide-mirma");
+        else
+          tableEl.addClass("hide-mirma");
+
+        $(".data-mirna-toggle").each( (id, el) => {
+          $(el).prop('checked', show_mirma).change();
+        })
+      });
 
     // Helper function to sanitize search field and update table
     var PerformSearch = function(updateHash) {

@@ -43,53 +43,6 @@
 
     $(document).ready(() => {
 
-
-      async.parallel(
-        // Asynchronous loading of data
-        [
-          // load seed data
-          (callback) => {
-            d3.csv("data/seed_viability.csv")
-              .row( r => { return new Mer6(r); })
-              .get( callback );
-          },
-
-          // load miRNA data
-          (callback) => {
-            d3.csv("data/miRNA_data.csv")
-              .row( r => {return r;} )
-              .get( callback );
-          }
-        ], 
-
-        // once loaded, process data
-        (err, results) => {
-          if(err) {
-            console.error(err);
-            return;
-          }
-
-          // set up our datastorage
-          dataStore = {
-            seedArr   : results[0],
-            seedMap   : {},
-            mi_rnaArr : results[1],
-            mi_rnaMap : {},
-          }
-
-          // A lookup map of seed to its data
-          for(var i = 0; i < dataStore.seedArr.length; ++i)
-            dataStore.seedMap[dataStore.seedArr[i].seed] = dataStore.seedArr[i];
-
-          // A lookup map of mi_rna to its data
-          for(var i = 0; i < dataStore.mi_rnaArr.length; ++i) {
-            let id = dataStore.mi_rnaArr[i].mi_rna;
-            dataStore.mi_rnaMap[id] = dataStore.mi_rnaArr[i];
-            dataStore.seedMap[dataStore.mi_rnaArr[i].seed].mi_rna.push(id);
-          }
-
-          console.log(dataStore);
-        });
     });
   </script>
 </body>

@@ -101,15 +101,17 @@ div.card > :first-child {
   position: absolute;
 }
 
+/* disable the toggle handle visual*/
 .toggle-group .toggle-on.btn, 
 .toggle-group .toggle-off.btn {
-  padding-right: inherit;
-  padding-left: inherit;
+/*  padding-right: inherit;
+  padding-left: inherit;*/
   box-shadow: none;
 }
-.toggle-group .toggle-handle.btn {
+/*.toggle-group .toggle-handle.btn {
   display: none;
-}
+}*/
+
 
 
 div.dataTables_wrapper div.dataTables_processing {
@@ -119,7 +121,8 @@ div.dataTables_wrapper div.dataTables_processing {
   width: 400px;
 }
 
-div.dataTables_wrapper div.dataTables_length  {
+div.dataTables_wrapper div.dataTables_length,
+div.mi-rna-toggle   {
   padding-top: 0.35rem;
   padding-right: 1rem;
 }
@@ -133,6 +136,18 @@ div.dataTables_wrapper div.dataTables_info {
   color: grey;
   font-style: italic;
 }
+
+.mi-rna-toggle .btn-primary {
+  background-color: #514689;
+  border-color: #43387d;
+}
+.mi-rna-toggle .btn-primary:hover,
+.mi-rna-toggle .btn-primary:focus,
+.mi-rna-toggle .btn-primary:active { 
+  background-color: #43387d !important;
+  border-color: #43387d !important;
+}
+
 
 /*
  * Table view
@@ -225,11 +240,18 @@ td {
   line-height: 1.75rem;
 }
 
+.hide-mirma tr {
+  display: none;
+}
+.hide-mirma tr.odd,
+.hide-mirma tr.even,
+.hide-mirma thead tr {
+  display: table-row;;
+}
+
 tr .mi-rna {
   position:relative;
   top: -2px;
-  left: -1.5px;
-  width: 100%;
   padding: 0 0 0.1rem 0.7rem;
   margin: 0 0.1rem;
   line-height: 1.2rem;
