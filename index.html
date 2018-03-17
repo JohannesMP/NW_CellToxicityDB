@@ -87,7 +87,7 @@
                       <input type="text" id="data-seed-field" class="form-control" aria-describedby="data-seed-field-help" placeholder="Nucleotides" disabled>
                     </div>
                     <small id="data-seed-field-help" class="form-text text-muted">
-                      seed filter help text
+                      Show only seeds with these 1-6 Nucleotides
                     </small>
                   </div>
 
@@ -99,7 +99,7 @@
                       <input type="text" id="data-mirna-field" class="form-control" aria-describedby="data-mirna-field-help" placeholder="miRNA ID or mature miRNA" disabled>
                     </div>
                     <small id="data-mirna-field-help" class="form-text text-muted">
-                      miRNA filter help text
+                      Fills in Seed field for any valid miRNA
                     </small>
                   </div>
                 </div>
@@ -110,7 +110,7 @@
                     <button id="reset-button" class="btn btn-danger" >Reset</button>
                   </div>
                   <div class="col-auto">
-                    <button id="save-button" class="btn btn-success" aria-describedby="save-button-help" disabled><i class="fas fa-download"></i><span class="d-none d-lg-inline"> Download CSV</span></button>
+                    <button id="save-button" class="btn btn-success" aria-describedby="save-button-help" disabled><i class="fas fa-download"></i><span class="d-xs-inline d-sm-none d-lg-inline"> Download CSV</span></button>
                   </div>
                 </div>
               </div>
@@ -139,7 +139,7 @@
           <div class="card-body">
             <h5 class="card-title">Info</h5>
             <p>This site maps the activity of any siRNA, shRNA, or miRNA to be toxic through induction of DISE (death induced by survival gene elimination) in a human (HeyA8) and a mouse (M565) cell line.
-            <ul><li>miRNAs with low viability (high toxicity, <b>red color</b>) will likely be tumor suppressive.</li><li>miRNAs with high viability (low toxicity, <b>green color</b>).</li></ul></p>
+            <ul><li>miRNAs with low viability (high toxicity, <b>red color</b>) will likely be tumor suppressive.</li><li>miRNAs with high viability (low toxicity, <b>green color</b>) can be tumor promoting.</li></ul></p>
 
             <p>Enter one of 4096 possible 6mers into the search field, any nucleotide sequence of less than 6 nucleotides, or the name of any miRNA or mature miRNA listed at <a href=http://mirbase.org>mirbase.org</a>.Use positions 2-7 of the guide/antisense strand of the siRNA duplex as the 6mer.</p>
 
