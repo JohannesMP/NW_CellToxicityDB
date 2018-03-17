@@ -256,14 +256,15 @@ $(document).ready(function() {
       row.child().find("td").attr("colspan", 20);
     });
 
-    console.log("foo");
-    table.on( 'draw', function () {
-        var body = $( table.table().body() );
-        body.unhighlight();
-        if ( table.rows( { filter: 'applied' } ).data().length ) {
-          body.highlight( table.search() );
-        } 
-      } );
+    // table.on( 'draw', function () {
+    //     var body = $( table.table().body() );
+    //     body.unhighlight();
+    //     if ( table.rows( { filter: 'applied' } ).data().length ) {
+    //       console.log(table.search());
+
+    //       body.highlight( table.search() );
+    //     } 
+    //   } );
 
     // mouse-over potentially
     tableEl.find("tbody")
