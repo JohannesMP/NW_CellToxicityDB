@@ -305,15 +305,15 @@ tr:hover td {
 }
 
 /* Search highlighting */
-table.dataTable span.highlight {
+table.dataTable .seq-rna span.highlight {
   background-color: #e9d8ff;
   border-radius: 0.3rem;
 }
-table.dataTable span.highlight:not(:first-of-type) {
+table.dataTable .seq-rna span.highlight:not(:first-of-type) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-table.dataTable span.highlight:not(:last-of-type) {
+table.dataTable .seq-rna span.highlight:not(:last-of-type) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
