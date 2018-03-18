@@ -260,11 +260,12 @@ $(document).ready(function() {
       else
         console.log("none");
 
-      if(seed != undefined)
-      {
+      // if(seed != undefined)
+      // {
         seedSearchEl.val(seed);
         PerformSeedSearch();
-      }
+      // }
+      
     });
 
     // Reset button
