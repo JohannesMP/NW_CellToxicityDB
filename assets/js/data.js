@@ -1,11 +1,11 @@
 // The headers used to identify each row in the csv
 const seedHeaders = {
   seed   : "Seed",                      // DNA 6-Mer
-  via1   : "Cell viability HeyA8 (%)",
+  via1   : "Viability HeyA8 (%)",
   std1   : "STDEV (HeyA8)",
-  via2   : "Cell viability M565 (%)",
+  via2   : "Viability M565 (%)",
   std2   : "STDEV (M565)",
-  avg    : "Average viability (%)",     // calculated when needed from via1, via2
+  avg    : "Average (%)",     // calculated when needed from via1, via2
   mi_rna : "miRNAs",                    // filled in later 
 };
 
@@ -69,7 +69,7 @@ Mer6.prototype.toArray = function() {
 var Mer6ArrayToCSV = function(dataArr)
 {
   // Set up headers
-  let csv = dataArr.columns.join(",") + "," 
+  let csv = dataArr.columns.map( col => seedHeaders[col] ).join(",") + "," 
     + seedHeaders.avg + ", " + seedHeaders.mi_rna + "\n";
 
   for(var i = 0; i < dataArr.length; ++i)
