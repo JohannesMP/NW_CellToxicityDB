@@ -4,8 +4,7 @@ var table;
 var filteredRowCount;
 var filteredRowData;
 
-var show_mirma = true;
-
+var show_mirma = localStorage.getItem('show_mirna') === "false" ? false : true;
 
 $(document).ready(function() {
 
@@ -143,7 +142,7 @@ $(document).ready(function() {
         if($(evt.target).prop('checked') == show_mirma)
           return;
         show_mirma = !show_mirma;
-        
+        localStorage.setItem('show_mirna', show_mirma)
 
         if(show_mirma)
           tableEl.removeClass("hide-mirma");
