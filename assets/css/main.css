@@ -260,15 +260,27 @@ tr .mi-rna {
   border-bottom-left-radius: .7rem;
   border-bottom-right-radius: .7rem;
 }
-tr .mi-rna .badge {
+tr .mi-rna .mi-arm {
   margin-right: 0.1rem;
-  background-color: #5d4593cc;
+}
+.mi-arm { 
+  background-color: #4e3a7bcc; 
   color: white;
   font-weight: normal;
+  border: #382e4fcc solid 1px;
+  /*8d7eaf*/
 }
-tr .mi-rna .badge:hover {
-  background-color: #5d4593ff;
+.mi-arm:hover { 
+  background-color: #382e4fff; 
 }
+.mi-arm.mi-arm-less { 
+  background-color: #8d7eafcc; 
+  border-color: #655291aa;
+}
+.mi-arm.mi-arm-less:hover { 
+  background-color: #5a4a7fcc;  
+}
+
 tr .mi-rna a {
   color: inherit;
 }

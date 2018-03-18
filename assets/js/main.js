@@ -1,7 +1,4 @@
-const query = document.querySelector.bind(document);
-const queryAll = document.querySelectorAll.bind(document);
-
-// for console debugging
+// Currently global for console debugging
 var dataStore;
 var table;
 var filteredRowCount;
@@ -9,7 +6,6 @@ var filteredRowData;
 
 var show_mirma = true;
 
-var showModeToggle = false;
 
 $(document).ready(function() {
 
@@ -27,66 +23,8 @@ $(document).ready(function() {
   let loadingEl     = $('#loading-display');
   let toggleMiEl    = $('#data-mirna-toggle');
 
-  if(showModeToggle)
-  {
-    modeEl.bootstrapToggle('disable');
-    modeEl.parent().addClass('disabled')
-    modeEl.parent().find('.btn').each( (index, value) => {
-      $(value).addClass('disabled'); } );
-  }
-
-  // given a potential input seed, cleans it up
-  // - Can only be 6 chars long
-  // - All uppercase
-  // - U or T based on if in RNA or DNA mode
-  var SanitizeSequence = function(str, len)
-  {
-    if(len === undefined)
-      len = str.length;
-
-    chars = str.toUpperCase().split('');
-    ret = [];
-
-    for(var i = chars.length-1; i >= 0 && ret.length < 6; --i)
-    {
-      if(['A','C','T','G','U'].includes(chars[i]))
-      {
-        if(chars[i] == 'T') 
-          ret.push('U');
-        else
-          ret.push(chars[i]);
-      }
-    }
-
-    return ret.reverse().join('');
-  }
-
-  var GetModeFromHash = function() {
-    var i = location.hash.indexOf(':');
-
-    if(i == -1)
-      return undefined;
-
-    return location.hash.substring(1,i);
-  }
-
-  var GetSequenceFromHash = function() {
-    var i = location.hash.indexOf(':');
-    if(i == -1)
-      i = 0;
-
-    return location.hash.substring(i+1);
-    return raw;
-  }
-
-  // Allows us to search for miRNA strings with or without dashes.
-  var FilterMiRNAString = function(str) {
-    return str.replace(/-/g,"").toLowerCase();
-  }
-
-
+  // Asynchronous load required data, then process it
   async.parallel(
-    // Asynchronous loading of data
     [
       // load seed data
       (callback) => {
@@ -98,7 +36,7 @@ $(document).ready(function() {
       // load miRNA data
       (callback) => {
         d3.csv("data/miRNA_data.csv")
-          .row( r => {return r;} )
+          .row( r => { return r; } )
           .get( callback );
       }
     ], 
@@ -112,11 +50,11 @@ $(document).ready(function() {
 
       // set up our data storage
       dataStore = {
-        seedArr   : results[0],
-        seedMap   : {},
-        mi_rnaArr : results[1],
-        mi_rnaMap : {},
-        mi_accMap : {},
+        seedArr:   results[0],
+        seedMap:   {},
+        mi_rnaArr: results[1],
+        mi_rnaMap: {},
+        mi_accMap: {},
       }
 
       // A lookup map of seed to its data
@@ -135,49 +73,6 @@ $(document).ready(function() {
     });
 
 
-
-  // print a number rounded to one decimal place
-  var renderNum = function( data, type, row, meta ) {
-    return Number.parseFloat(data).toFixed(1);
-  }
-
-  var renderNumColorRange = function( data, type, row, meta ) {
-    var val = renderNum(data);
-
-    // No color
-    if(val == 50)
-      return val;
-
-    var rgb_red   = [255,0,0];
-    var rgb_green = [0,255,0];
-
-    var a_low  = 0;
-    var a_high = 0.5;
-
-    var t = 0;
-
-    // Red color
-    if(val < 50) {
-      low  = rgb_red.concat(a_low);
-      high = rgb_red.concat(a_high);
-      t = 1 - (val / 50);
-    }
-
-    // Green color
-    else if(val > 50) {
-      low  = rgb_green.concat(a_low);
-      high = rgb_green.concat(a_high);
-      t = (val / 50) - 1;
-    }
-
-    var rgba = lerpArray(low, high, t);
-   // console.log("val: " + val + ", RGB: " + rgb);
-    var color = `rgba(${rgba[0]},${rgba[1]},${rgba[2]},${rgba[3]})`
-
-    return `<div class="num-wrap" style="background-color: ${color}">${renderNum(data)}</div>`;
-  }
-
-
   var InitTable = function(dataset) {
     loadingEl.remove();
 
@@ -192,14 +87,14 @@ $(document).ready(function() {
 <"row t-controls"
   <"col" <"float-left" l > <"mi-rna-toggle float-left"> <"float-right" p > <"float-left" i > >
 >`,
-      paging: true,
-      search: { smart: false },
+      paging:      true,
+      search:      { smart: false },
       searchDelay: 100,
-      processing: true,
-      stateSave: true,
-      lengthMenu: [ [ 10, 50, 100, 500, -1], 
-                    [ 10, 50, 100, 500, "All (slow)"] ],
-      order: [6, 'asc'],    
+      processing:  true,
+      stateSave:   true,
+      lengthMenu:  [ [ 10, 50, 100, 500, -1], 
+                     [ 10, 50, 100, 500, "All (slow)"] ],
+      order:       [6, 'asc'],    
 
       columns: [
         // Seed
@@ -230,12 +125,43 @@ $(document).ready(function() {
         { data: "avg",  title: seedHeaders.avg,  searchable: false, 
           orderable: true,  className: "h-avg", render: renderNumColorRange  },
       ],
-      fixedHeader: {
-        header: true,
-        footer: true
-      }
+      fixedHeader: { header: true, footer: true }
     });
 
+    // Set up double toggle switch
+    $(".mi-rna-toggle")
+      .html(`<input class="data-mirna-toggle" type="checkbox" checked data-toggle="toggle">`);
+    $(".data-mirna-toggle").bootstrapToggle({
+        on:       'hide miRNAs',
+        off:      'show miRNAs',
+        offstyle: 'secondary',
+        size:     'small',
+      })
+      .prop('checked', show_mirma).change()
+      .change((evt) => {
+        if($(evt.target).prop('checked') == show_mirma)
+          return;
+        show_mirma = !show_mirma;
+        
+
+        if(show_mirma)
+          tableEl.removeClass("hide-mirma");
+        else
+          tableEl.addClass("hide-mirma");
+
+        $(".data-mirna-toggle").each( (id, el) => {
+          $(el).prop('checked', show_mirma).change();
+        })
+      });
+
+    // Initialize miRNA toggle state on table
+    if(show_mirma)
+      tableEl.removeClass("hide-mirma");
+    else
+      tableEl.addClass("hide-mirma");
+
+
+    // Add miRNA child rows
     table.rows().every(function(row_index) {
       let row = table.row(row_index);
       let data = row.data();
@@ -248,14 +174,17 @@ $(document).ready(function() {
       {
         let id = data.mi_rna[i];
         let acc = dataStore.mi_rnaMap[FilterMiRNAString(id)].accession;
+        let is_dom = dataStore.mi_rnaMap[FilterMiRNAString(id)].is_predominant == "1";
+        let arm_class = is_dom ? "mi-arm-dom" : "mi-arm-less";
         let url = `http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=${acc}`;
-        str += `<a href="${url}"><div class="badge badge-light">${id}</div></a>`;
+        str += `<a href="${url}"><div class="badge badge-light mi-arm ${arm_class}">${id}</div></a>`;
       }
       row.child('<div class="mi-rna">' + str + '</div>').show();
       // ensure correct sizing when small window and scaling up
       row.child().find("td").attr("colspan", 20);
     });
 
+    // Search Result Highlighting
     // table.on( 'draw', function () {
     //     var body = $( table.table().body() );
     //     body.unhighlight();
@@ -265,6 +194,7 @@ $(document).ready(function() {
     //       body.highlight( table.search() );
     //     } 
     //   } );
+
 
     // mouse-over potentially
     tableEl.find("tbody")
@@ -277,35 +207,7 @@ $(document).ready(function() {
         // $( table.row(index.row).node() ).addClass('highlight');
       });
 
-    // Set up toggles for showing/hiding miRNA
 
-    if(show_mirma)
-      tableEl.removeClass("hide-mirma");
-    else
-      tableEl.addClass("hide-mirma");
-
-    $(".mi-rna-toggle").html(`<input class="data-mirna-toggle" type="checkbox" checked data-toggle="toggle">`);
-    $(".data-mirna-toggle").bootstrapToggle({
-        on: 'hide miRNAs',
-        off: 'show miRNAs',
-        offstyle: 'secondary',
-        size: 'small',
-      })
-      .prop('checked', show_mirma).change()
-      .change((evt) => {
-        if($(evt.target).prop('checked') == show_mirma)
-          return;
-        show_mirma = !show_mirma;
-
-        if(show_mirma)
-          tableEl.removeClass("hide-mirma");
-        else
-          tableEl.addClass("hide-mirma");
-
-        $(".data-mirna-toggle").each( (id, el) => {
-          $(el).prop('checked', show_mirma).change();
-        })
-      });
 
     // Helper function to sanitize search field and update table
     var PerformSeedSearch = function(updateHash) {
@@ -328,6 +230,7 @@ $(document).ready(function() {
       filteredRowData.columns = dataStore.seedArr.columns;
     });
     
+
     // Check hash for data 
     let initialSearch = GetSequenceFromHash();
     // If no sequence in hash, attempt to load from past search state
@@ -363,6 +266,7 @@ $(document).ready(function() {
       }
     });
 
+    // Reset button
     resetButtonEl.on('click' , (e) => {
       window.localStorage.clear();
 
@@ -373,6 +277,7 @@ $(document).ready(function() {
         window.location = window.location.href.replace(window.location.hash, '');
     });
 
+    // Save button
     saveButtonEl.on('click', (e) => {
       let csvData = Mer6ArrayToCSV(filteredRowData);
 
@@ -387,8 +292,8 @@ $(document).ready(function() {
       // save using FileSaver.js
       else
         saveAs(new Blob([csvData], {type: "text/csv"}), csvFileName);
-      
     });
+
 
     // Handle user manually changing hash string
     if("onhashchange" in window) {
@@ -403,12 +308,12 @@ $(document).ready(function() {
         PerformSeedSearch();
       });
 
-      // Everything is set up, show settings
+
+      // Everything is done setting up - make Elements visible
       seedSearchEl.prop("disabled", false);
       mirnaSearchEl.prop("disabled", false);
       resetButtonEl.prop("disabled", false);
       saveButtonEl.prop("disabled", false);
-
     }
   }
 
