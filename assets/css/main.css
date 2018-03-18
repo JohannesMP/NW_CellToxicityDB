@@ -278,6 +278,7 @@ tr .mi-rna .mi-arm {
   border-color: #ada5c2;
 }
 .mi-arm.mi-arm-less:hover { 
+  color: #171321;
   background-color: #9188a9;
   border-color: #7a728e;
 }
