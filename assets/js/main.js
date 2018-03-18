@@ -88,12 +88,12 @@ $(document).ready(function() {
 >`,
       paging:      true,
       search:      { smart: false },
-      searchDelay: 100,
       searchHighlight: false,
       processing:  true,
       stateSave:   true,
       lengthMenu:  [ [ 10, 50, 100, 500, -1], 
                      [ 10, 50, 100, 500, "All (slow)"] ],
+      pageLength:  10,
       order:       [6, 'asc'],    
 
       columns: [
