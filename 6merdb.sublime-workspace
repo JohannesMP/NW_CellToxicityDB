@@ -243,6 +243,9 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Jo/Desktop/Sandbox/WebRepos/NW_CellToxicityDB/assets/js/utils.js",
+		"/C/Users/Jo/Desktop/Sandbox/WebRepos/NW_CellToxicityDB/assets/js/data.js",
+		"/C/Users/Jo/Desktop/Sandbox/WebRepos/NW_CellToxicityDB/index.html",
 		"/C/Users/Jo/Desktop/Sandbox/WebRepos/NW_CellToxicityDB/assets/css/main.css",
 		"/C/Users/Jo/Desktop/Sandbox/WebRepos/NW_CellToxicityDB/data/miRNA_data.csv",
 		"/C/Users/Jo/Dropbox/Files for 6merdb/Data/miRNA_data_2018-03-15.csv",
@@ -367,14 +370,11 @@
 		"/C/Users/Jo/Documents/Atomineer/DoxygenTemplates.xml",
 		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/Doxygen/BuildDoxs.bat",
 		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/dPASM/Doxygen/.gitignore",
-		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/.gitignore",
-		"/C/Users/Jo/Documents/Atomineer/NaturalTemplates.xml",
-		"/C/Users/Jo/Documents/Atomineer/Prefs.xml",
-		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/AssemblerBackend/Backend.sln"
+		"/C/Users/Jo/Desktop/Sandbox/CS100Assembler/.gitignore"
 	],
 	"find":
 	{
-		"height": 61.0
+		"height": 60.0
 	},
 	"find_in_files":
 	{
@@ -440,7 +440,7 @@
 		"cols":
 		[
 			0.0,
-			0.591237588305,
+			0.220068885775,
 			1.0
 		],
 		"rows":
@@ -502,7 +502,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 246.0,
+	"side_bar_width": 348.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

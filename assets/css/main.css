@@ -204,7 +204,7 @@ th.h-std {
   overflow:    hidden;
 }
 /* Centering */
-.h-via, .h-std, .h-avg {
+.h-via, .h-std, .h-avg, .h-mir {
   text-align: center;
 }
 
