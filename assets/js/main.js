@@ -90,6 +90,7 @@ $(document).ready(function() {
       paging:      true,
       search:      { smart: false },
       searchDelay: 100,
+      searchHighlight: false,
       processing:  true,
       stateSave:   true,
       lengthMenu:  [ [ 10, 50, 100, 500, -1], 
@@ -184,16 +185,15 @@ $(document).ready(function() {
       row.child().find("td").attr("colspan", 20);
     });
 
-    // Search Result Highlighting
-    // table.on( 'draw', function () {
-    //     var body = $( table.table().body() );
-    //     body.unhighlight();
-    //     if ( table.rows( { filter: 'applied' } ).data().length ) {
-    //       console.log(table.search());
+    //Search Result Highlighting
+    table.on( 'draw', function () {
+      var body = $( table.table().body() );
+      body.unhighlight();
 
-    //       body.highlight( table.search() );
-    //     } 
-    //   } );
+      if ( table.rows( { filter: 'applied' } ).data().length ) {
+        body.highlight( seedSearchEl.val() );
+      } 
+    } );
 
 
     // mouse-over potentially
@@ -217,9 +217,10 @@ $(document).ready(function() {
       if(updateHash === undefined || updateHash === true)
         location.hash = content;
 
-      console.log(`Searching for: ${DNAtoRNA(content)}`);
-      regExSearch = ".*" + DNAtoRNA(content) + ".*";
-      var result = table.column(0).search(regExSearch, true, false);
+      let rna = DNAtoRNA(content);
+      console.log(`Searching for: ${rna}`);
+      let regExSearch = ".*" + rna + ".*";
+      let result = table.column(0).search(rna, true, false);
       result.draw();
     }
 
@@ -247,7 +248,8 @@ $(document).ready(function() {
     });
 
     mirnaSearchEl.on('input', (e) => {
-      let input = mirnaSearchEl.val();
+      let field = $(e.target);
+      let input = field.val();
       let filtered = FilterMiRNAString(input);
       let seed;
       console.log(filtered);
@@ -261,7 +263,7 @@ $(document).ready(function() {
 
       if(seed != undefined)
       {
-        seedSearchEl.val(seed);
+        field.val(seed);
         PerformSeedSearch();
       }
     });

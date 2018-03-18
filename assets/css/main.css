@@ -153,7 +153,7 @@ div.dataTables_wrapper div.dataTables_info {
  * Table view
  */
 
-#data-table td.h-seed span { display: none; }
+/*#data-table td.h-seed span { display: none; }*/
 #data-table.mode-dna td.h-seed .seq-dna,
 #data-table.mode-rna td.h-seed .seq-rna {display: inherit; }
 
@@ -304,7 +304,19 @@ tr:hover td {
 
 }
 
-
+/* Search highlighting */
+table.dataTable span.highlight {
+  background-color: #e9d8ff;
+  border-radius: 0.3rem;
+}
+table.dataTable span.highlight:not(:first-of-type) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+table.dataTable span.highlight:not(:last-of-type) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
 
 
 /* 
