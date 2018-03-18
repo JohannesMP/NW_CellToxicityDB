@@ -263,7 +263,7 @@ $(document).ready(function() {
 
       if(seed != undefined)
       {
-        field.val(seed);
+        seedSearchEl.val(seed);
         PerformSeedSearch();
       }
     });

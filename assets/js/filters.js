@@ -47,5 +47,6 @@ var GetSequenceFromHash = function() {
 
 // Allows us to search for miRNA strings with or without dashes.
 var FilterMiRNAString = function(str) {
+  str = "hsa-" + str.replace("hsa-", "")
   return str.replace(/-/g,"").toLowerCase();
 }
