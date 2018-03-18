@@ -249,9 +249,9 @@ $(document).ready(function() {
     mirnaSearchEl.on('input', (e) => {
       let field = $(e.target);
       let input = field.val();
+      field.val(input.replace("hsa-", "").replace("hsa",""));
       let filtered = FilterMiRNAString(input);
       let seed;
-      console.log(filtered);
 
       if(filtered in dataStore.mi_rnaMap)
         seed = dataStore.mi_rnaMap[filtered].seed;
