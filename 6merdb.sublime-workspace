@@ -388,6 +388,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"bg-nw",
+			"transition",
 			"datastorage",
 			"mirnaArr",
 			"data",
@@ -493,7 +495,7 @@
 		"selected_items":
 		[
 		],
-		"width": 380.0
+		"width": 480.0
 	},
 	"settings":
 	{
