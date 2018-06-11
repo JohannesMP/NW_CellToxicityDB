@@ -110,20 +110,26 @@ $(document).ready(function() {
             function( data, type, row, meta ) { return data.length }
         },
         // Vitality 1
-        { data: "via1", title: seedHeaders.via1, searchable: false, 
+        { data: "via_heya8", title: seedHeaders.via_heya8, searchable: false, 
           orderable: true, className: "h-via ", render: renderNumColorRange },
         // STDEV 1
-        { data: "std1", title: seedHeaders.std1, searchable: false, 
+        { data: "std_heya8", title: seedHeaders.std_heya8, searchable: false, 
           orderable: false, className: "h-std d-none d-lg-block", render: renderNum  },
         // Vitality 2
-        { data: "via2", title: seedHeaders.via2, searchable: false, 
+        { data: "via_h460", title: seedHeaders.via_h460, searchable: false, 
           orderable: true,  className: "h-via", render: renderNumColorRange  },
         // STDEv 2
-        { data: "std2", title: seedHeaders.std2, searchable: false, 
+        { data: "std_h460", title: seedHeaders.std_h460, searchable: false, 
           orderable: false, className: "h-std d-none d-lg-block", render: renderNum  },
         // Average
-        { data: "avg",  title: seedHeaders.avg,  searchable: false, 
+        { data: "avg_heya8_h460",  title: seedHeaders.avg_heya8_h460,  searchable: false, 
           orderable: true,  className: "h-avg", render: renderNumColorRange  },
+        // Vitality 3
+        { data: "via_m565", title: seedHeaders.via_m565, searchable: false, 
+          orderable: true, className: "h-via ", render: renderNumColorRange },
+        // STDEV 3
+        { data: "std_m565", title: seedHeaders.std_m565, searchable: false, 
+          orderable: false, className: "h-std d-none d-lg-block", render: renderNum  },
       ],
       fixedHeader: { header: true, footer: true }
     });
