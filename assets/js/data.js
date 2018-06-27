@@ -91,7 +91,7 @@ Mer6.prototype.toArray = function() {
     this.via_3ll,
     this.std_3ll,
     this.avg_mouse,
-    this.avg_all
+    this.avg_all,
     `"${this.mi_rna.join(",")}"`,
   ];
 }
@@ -102,7 +102,7 @@ var Mer6ArrayToCSV = function(dataArr)
   // Set up headers
   let csv = dataArr.columns.map( col => seedHeaders[col] ).join(",") 
     //+ "," + seedHeaders.avg_human 
-    + ", " + seedHeaders.mi_rna + "\n";
+    + "," + seedHeaders.mi_rna + "\n";
 
   for(var i = 0; i < dataArr.length; ++i)
     csv += dataArr[i].toCSVRow();
