@@ -109,27 +109,41 @@ $(document).ready(function() {
           orderable: true, className: "h-mir", render: 
             function( data, type, row, meta ) { return data.length }
         },
-        // Vitality 1
+        // heya8
         { data: "via_heya8", title: seedHeaders.via_heya8, searchable: false, 
           orderable: true, className: "h-via ", render: renderNumColorRange },
-        // STDEV 1
         { data: "std_heya8", title: seedHeaders.std_heya8, searchable: false, 
           orderable: false, className: "h-std d-none d-lg-block", render: renderNum  },
-        // Vitality 2
+
+        // h460
         { data: "via_h460", title: seedHeaders.via_h460, searchable: false, 
           orderable: true,  className: "h-via", render: renderNumColorRange  },
-        // STDEv 2
         { data: "std_h460", title: seedHeaders.std_h460, searchable: false, 
           orderable: false, className: "h-std d-none d-lg-block", render: renderNum  },
-        // Average
-        { data: "avg_heya8_h460",  title: seedHeaders.avg_heya8_h460,  searchable: false, 
+
+        // Average for Humans
+        { data: "avg_human",  title: seedHeaders.avg_human,  searchable: false, 
           orderable: true,  className: "h-avg", render: renderNumColorRange  },
-        // Vitality 3
+
+        // m565
         { data: "via_m565", title: seedHeaders.via_m565, searchable: false, 
           orderable: true, className: "h-via ", render: renderNumColorRange },
-        // STDEV 3
         { data: "std_m565", title: seedHeaders.std_m565, searchable: false, 
           orderable: false, className: "h-std d-none d-lg-block", render: renderNum  },
+
+        // m565
+        { data: "via_3ll", title: seedHeaders.via_3ll, searchable: false, 
+          orderable: true, className: "h-via ", render: renderNumColorRange },
+        { data: "std_3ll", title: seedHeaders.std_3ll, searchable: false, 
+          orderable: false, className: "h-std d-none d-lg-block", render: renderNum  },
+
+        // Average for Mouse
+        { data: "avg_mouse",  title: seedHeaders.avg_mouse,  searchable: false, 
+          orderable: true,  className: "h-avg", render: renderNumColorRange  },
+
+        // Average for All
+        { data: "avg_all",  title: seedHeaders.avg_all,  searchable: false, 
+          orderable: true,  className: "h-avg", render: renderNumColorRange  },
       ],
       fixedHeader: { header: true, footer: true }
     });

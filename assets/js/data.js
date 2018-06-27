@@ -6,22 +6,38 @@ const seedHeaders = {
   std_heya8:      "STDEV (HeyA8)",
   via_h460:       "Viability H460 (%)",
   std_h460:       "STDEV (H460)",
-  avg_heya8_h460: "Average human cells (%)",     // calculated when needed from via_heya8, via_m565
+  avg_human:      "Average human cells (%)",
   via_m565:       "Viability M565 (%)",
   std_m565:       "STDEV (M565)",
+  via_3ll:        "Viability 3LL (%)",
+  std_3ll:        "STDEV (3LL)",
+  avg_mouse:      "Average mouse cells (%)",
+  avg_all:        "Average all cells (%)",
   mi_rna:         "miRNAs",                    // filled in later 
 };
 
 
 
 // Mer6 Data Default Constructor
-function Mer6(obj, via_heya8, std_heya8, via_h460, std_h460, avg_heya8_h460, via_m565, std_m565) {
+function Mer6(  obj, 
+                via_heya8, 
+                std_heya8, 
+                via_h460, 
+                std_h460, 
+                avg_human, 
+                via_m565, 
+                std_m565,
+                via_3ll,
+                std_3ll,
+                avg_mouse,
+                avg_all) {
   // obj is seed string
   if(typeof(obj) === "string")
-    this.set(obj, via_heya8, std_heya8, via_h460, std_h460, avg_heya8_h460, via_m565, std_m565);
+    this.set(   obj,        via_heya8,  std_heya8,  via_h460,   std_h460,   avg_human, 
+                via_m565,   std_m565,   via_3ll,    std_3ll,    avg_mouse,  avg_all);
   // obj is a row array
   else if(Array.isArray("array"))
-    this.set(obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], obj[6], obj[7]);
+    this.set(obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], obj[6], obj[7], obj[8], obj[9], obj[10], obj[11]);
   // obj is row object
   else
     this.set(
@@ -30,31 +46,33 @@ function Mer6(obj, via_heya8, std_heya8, via_h460, std_h460, avg_heya8_h460, via
       obj.std_heya8,
       obj.via_h460,
       obj.std_h460,
-      obj.avg_heya8_h460,
+      obj.avg_human,
       obj.via_m565,
-      obj.std_m565
+      obj.std_m565,
+      obj.via_3ll,
+      obj.std_3ll,
+      obj.avg_mouse,
+      obj.avg_all
     );
 }
 
-Mer6.prototype.set = function(seed, via_heya8, std_heya8, via_h460, std_h460, avg_heya8_h460, via_m565, std_m565, mi_rna) {
+Mer6.prototype.set = function(seed, via_heya8, std_heya8, via_h460, std_h460, avg_human, 
+                            via_m565, std_m565, via_3ll, std_3ll, avg_mouse, avg_all, mi_rna) {
   this.seed              = seed;
   this.via_heya8         = +via_heya8;
   this.std_heya8         = +std_heya8;
   this.via_h460          = +via_h460;
   this.std_h460          = +std_h460;
-  this.avg_heya8_h460    = (avg_heya8_h460 !== undefined) ? +avg_heya8_h460  : this.getavg_heya8_h460();
+  this.avg_human         = +avg_human;
   this.via_m565          = +via_m565;
   this.std_m565          = +std_m565;
+  this.via_3ll           = +via_3ll;
+  this.std_3ll           = +std_3ll;
+  this.avg_mouse         = +avg_mouse;
+  this.avg_all           = +avg_all;
   this.mi_rna            = (mi_rna !== undefined) ? mi_rna : [];
 }
 
-Mer6.prototype.getavg_heya8_h460 = function() {
-  return (this.via_heya8 + this.via_h460) / 2;
-}
-
-Mer6.prototype.updateavg_heya8_h460 = function() {
-  this.avg_heya8_h460 = getavg_heya8_h460();
-}
 
 Mer6.prototype.toCSVRow = function() {
   return this.toArray().join(',') + "\n";
@@ -67,9 +85,13 @@ Mer6.prototype.toArray = function() {
     this.std_heya8,
     this.via_h460,
     this.std_h460,
-    this.avg_heya8_h460,
+    this.avg_human,
     this.via_m565,
     this.std_m565,
+    this.via_3ll,
+    this.std_3ll,
+    this.avg_mouse,
+    this.avg_all
     `"${this.mi_rna.join(",")}"`,
   ];
 }
@@ -78,8 +100,9 @@ Mer6.prototype.toArray = function() {
 var Mer6ArrayToCSV = function(dataArr)
 {
   // Set up headers
-  let csv = dataArr.columns.map( col => seedHeaders[col] ).join(",") + "," 
-    + seedHeaders.avg_heya8_h460 + ", " + seedHeaders.mi_rna + "\n";
+  let csv = dataArr.columns.map( col => seedHeaders[col] ).join(",") 
+    //+ "," + seedHeaders.avg_human 
+    + ", " + seedHeaders.mi_rna + "\n";
 
   for(var i = 0; i < dataArr.length; ++i)
     csv += dataArr[i].toCSVRow();
