@@ -7,7 +7,7 @@ A tool to look up the toxicity of any siRNA, shRNA or miRNA with known 6mer seed
 
 This site was created in collaboration with the [Peter Lab](labs.feinberg.northwest) at the Feinberg School of Medicine of Northwestern University.
 
-It allows to determine the activity of any siRNA, shRNA, or miRNA to be toxic through induction of DISE (death induced by survival gene elimination) in human cancer cells (HeyA8 - ovarian and H460 - lung) and a mouse cell line (M565 - liver).
+It allows to determine the activity of any siRNA, shRNA, or miRNA to be toxic through induction of DISE (death induced by survival gene elimination) in human (HeyA8 - ovarian and H460 - lung) and mouse (M565 - liver and 3LL - lung) cancer cell lines.
 
 The app is entirely static, hosted with [Github Pages](https://pages.github.com/) and all data filtering and download file generation occurs locally without any server requests made apart from the initial browser request.
 
