@@ -3,14 +3,14 @@
 const seedHeaders = {
   seed:           "Seed",                      // DNA 6-Mer
   via_heya8:      "Viability HeyA8 (%)",
-  std_heya8:      "STDEV (HeyA8)",
+  std_heya8:      "StDev HeyA8",
   via_h460:       "Viability H460 (%)",
-  std_h460:       "STDEV (H460)",
+  std_h460:       "StDev H460",
   avg_human:      "Average human cells (%)",
   via_m565:       "Viability M565 (%)",
-  std_m565:       "STDEV (M565)",
+  std_m565:       "StDev M565",
   via_3ll:        "Viability 3LL (%)",
-  std_3ll:        "STDEV (3LL)",
+  std_3ll:        "StDev 3LL",
   avg_mouse:      "Average mouse cells (%)",
   avg_all:        "Average all cells (%)",
   mi_rna:         "miRNAs",                    // filled in later 
