@@ -283,6 +283,26 @@ tr .mi-rna .mi-arm {
   border-color: #7a728e;
 }
 
+.red-badge {
+    background-color: rgb(255,127,127);
+    border-color: rgb(235, 107, 107);
+    color: black;
+    font-weight: normal;
+}
+.red-badge:hover{
+    background-color: rgb(215, 87, 87);
+}
+
+.green-badge {
+    background-color: rgb(127,255,127);
+    border-color: rgb(107, 235, 107);
+    color: black;
+    font-weight: normal;
+}
+.green-badge:hover{
+    background-color: rgb(87, 215, 87);
+}
+
 tr .mi-rna a {
   color: inherit;
 }
