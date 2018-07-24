@@ -251,10 +251,10 @@ td {
 
 tr .mi-rna {
   position:relative;
-  top: -2px;
+  top: 0px;
   padding: 0 0 0.1rem 0.7rem;
-  margin: 0 0.1rem;
-  line-height: 1.2rem;
+  margin-bottom: 0.1rem;
+  line-height: 1.25rem;
 
   background-color: rgba(0,0,0,0.1);
   border-bottom-left-radius: .7rem;
@@ -307,6 +307,11 @@ tr .mi-rna a {
   color: inherit;
 }
 
+tr td {
+    border-right: white 1px solid;
+    border-bottom: white 1px solid;
+}
+
 tr:hover td {
   box-shadow:         inset 0 0 100px rgba(255,255,255,1);
 }
@@ -341,6 +346,9 @@ table.dataTable .seq-rna span.highlight:not(:last-of-type) {
   border-bottom-right-radius: 0;
 }
 
+table.dataTable {
+    border-collapse: collapse !important;
+}
 
 /* 
  * Column view 
