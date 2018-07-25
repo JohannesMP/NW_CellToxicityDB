@@ -1,5 +1,5 @@
 
-const headerPercent = SpanShowAboveXS("(%)");
+const headerPercent = SpanShowAboveXS("(%)", "h-percent");
 const headerCells = SpanShowAboveSM("cells ");
 // The headers used to identify each row in the csv
 const seedHeaders = {

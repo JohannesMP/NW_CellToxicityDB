@@ -205,13 +205,14 @@ td {
     vertical-align: bottom;
 }
 th.h-std {
-    font-weight: normal;
     white-space: nowrap;
     overflow:    hidden;
     padding-top: 0.2rem;
     vertical-align: bottom;
 }
+th .h-percent,
 .h-std {
+    font-weight: normal;
     font-size: 0.9rem;
     color: #999;
 }
@@ -246,8 +247,7 @@ table.dataTable thead .sorting_desc:after,
 table.dataTable thead .sorting_asc_disabled:after, 
 table.dataTable thead .sorting_desc_disabled:after {
     right: 0;
-    top: 0.23rem;
-    /*bottom: -0.22rem;*/
+    top: 0.27rem;
 }
 /* Hide arrow of other sort direction */
 table.dataTable thead .sorting_asc:after, 
@@ -256,8 +256,18 @@ table.dataTable thead .sorting_desc:before
     opacity: 0;
 }
 /* When no sorting, show only double up/down arrow*/
-table.dataTable thead .sorting:before { content: "\2195"; }
-table.dataTable thead .sorting:after { content: ""; }
+table.dataTable thead .sorting:before 
+{ 
+    font-size: 0.6rem;
+    right: 0.11rem;
+    top: 0.2rem;
+}
+table.dataTable thead .sorting:after 
+{ 
+    font-size: 0.6rem;
+    right: 0.11rem;
+    top: 0.6rem;
+}
 
 th.sorting_asc, 
 th.sorting_desc, 
