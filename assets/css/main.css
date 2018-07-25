@@ -198,19 +198,66 @@ div.dataTables_wrapper div.dataTables_info {
     border-color: #43387d;
 }
 
+th {
+    vertical-align: top;
+}
+td {
+    vertical-align: bottom;
+}
 th.h-std {
     font-weight: normal;
     white-space: nowrap;
     overflow:    hidden;
+    padding-top: 0.2rem;
+    vertical-align: bottom;
 }
-/* Centering */
-.h-via, .h-std, .h-avg, .h-mir {
+.h-std {
+    font-size: 0.9rem;
+    color: #999;
+}
+/* Table cell Centering */
+.h-via, .h-std, .h-avg, .h-mir, .h-seed {
     text-align: center;
 }
 
-th.sorting_asc::before, th.sorting_asc::after, th.sorting_desc::before, th.sorting_desc::after {
-    font-size: 1.0rem;
+/* Headers with sort arrows should have padding on right */
+table.dataTable thead>tr>th.sorting_asc, 
+table.dataTable thead>tr>th.sorting_desc, 
+table.dataTable thead>tr>th.sorting, 
+table.dataTable thead>tr>td.sorting_asc, 
+table.dataTable thead>tr>td.sorting_desc, 
+table.dataTable thead>tr>td.sorting {
+    padding-right: 0.5rem;
 }
+
+/* Sort Up arrow positioning */
+table.dataTable thead .sorting:before, 
+table.dataTable thead .sorting_asc:before, 
+table.dataTable thead .sorting_desc:before, 
+table.dataTable thead .sorting_asc_disabled:before, 
+table.dataTable thead .sorting_desc_disabled:before {
+    right: 0;
+    top: 0;
+}
+/* Sort down arrow positioning */
+table.dataTable thead .sorting:after, 
+table.dataTable thead .sorting_asc:after, 
+table.dataTable thead .sorting_desc:after, 
+table.dataTable thead .sorting_asc_disabled:after, 
+table.dataTable thead .sorting_desc_disabled:after {
+    right: 0;
+    top: 0.23rem;
+    /*bottom: -0.22rem;*/
+}
+/* Hide arrow of other sort direction */
+table.dataTable thead .sorting_asc:after, 
+table.dataTable thead .sorting_desc:before
+{
+    opacity: 0;
+}
+/* When no sorting, show only double up/down arrow*/
+table.dataTable thead .sorting:before { content: "\2195"; }
+table.dataTable thead .sorting:after { content: ""; }
 
 th.sorting_asc, 
 th.sorting_desc, 

@@ -77,23 +77,35 @@ $(document).ready(function() {
             }
 
             // Helper for inserting into the index
-            var walkAndInsert = function(tree, steps, key, value) {
+            var walkAndInsert = function(tree, steps, key, value, filter) {
                 let cur = tree;
                 for(let i = 0; i < steps.length; ++i)
                 {
                     let step = steps[i];
-                    if(!(step  in cur))
+                    if(!(step in cur))
                         cur[step] = {};
                     cur = cur[step];
                 }
                 cur[key] = value;
             }
 
+            // For each stem, add it to the index tree
             for(var i = 0; i < dataStore.stemArr.length; ++i)
             {
                 let item = dataStore.stemArr[i];
-                let parts = item.mi_rna.replace("hsa-","").split('-');
-                walkAndInsert(dataStore.stemIndex, parts, "seed", item);
+                let parts = SanitizeStemString(item.mi_rna).split('-');
+                // remove trailing letters - we will filter those out manually at runtime
+                for(let part_i = 0; part_i < parts.length; ++part_i)
+                {
+                    let digits = ExtractLeadingDigits(parts[part_i]);
+                    if(digits !== "")
+                        parts[part_i] = digits;
+                }
+
+                walkAndInsert(dataStore.stemIndex, parts, "_seed", item);
+                // and also try to index without the first prefix ("let" or "miR")
+                parts.shift();
+                walkAndInsert(dataStore.stemIndex, parts, "_seed", item);
             }
 
 

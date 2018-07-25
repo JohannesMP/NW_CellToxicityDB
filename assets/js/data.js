@@ -1,21 +1,22 @@
 
+const headerPercent = SpanShowAboveXS("(%)");
+const headerCells = SpanShowAboveSM("cells ");
 // The headers used to identify each row in the csv
 const seedHeaders = {
-    seed:           "Seed",                      // DNA 6-Mer
-    via_heya8:      "Viability HeyA8 (%)",
-    std_heya8:      "StDev HeyA8",
-    via_h460:       "Viability H460 (%)",
-    std_h460:       "StDev H460",
-    avg_human:      "Avg human cells (%)",
-    via_m565:       "Viability M565 (%)",
-    std_m565:       "StDev M565",
-    via_3ll:        "Viability 3LL (%)",
-    std_3ll:        "StDev 3LL",
-    avg_mouse:      "Avg mouse cells (%)",
-    avg_all:        "Avg all cells (%)",
-    mi_rna:         "miRNAs",                    // filled in later 
+    seed:           'Seed',                      // DNA 6-Mer
+    via_heya8:      'Viability HeyA8 ' + headerPercent,
+    std_heya8:      'StDev',
+    via_h460:       'Viability H460 '  + headerPercent,
+    std_h460:       'StDev',
+    avg_human:      'Avg ' + SpanHideAboveSM("viability ") + 'human ' + headerCells + headerPercent,
+    via_m565:       'Viability M565 '  + headerPercent,
+    std_m565:       'StDev',
+    via_3ll:        'Viability 3LL '   + headerPercent,
+    std_3ll:        'StDev',
+    avg_mouse:      'Avg ' + SpanHideAboveSM("viability ") + 'mouse ' + headerCells + headerPercent,
+    avg_all:        'Avg ' + SpanHideAboveSM("viability ") + 'all '   + headerCells + headerPercent,
+    mi_rna:         'miRNAs',                    // filled in later 
 };
-
 
 
 // Mer6 Data Default Constructor
@@ -100,7 +101,7 @@ Mer6.prototype.toArray = function() {
 var Mer6ArrayToCSV = function(dataArr)
 {
     // Set up headers
-    let csv = dataArr.columns.map( col => seedHeaders[col] ).join(",") 
+    let csv = dataArr.columns.map( col => col ).join(",") 
         //+ "," + seedHeaders.avg_human 
         + "," + seedHeaders.mi_rna + "\n";
 

@@ -50,3 +50,20 @@ var FilterMiRNAString = function(str) {
     str = "hsa-" + str.replace("hsa-", "")
     return str.replace(/-/g,"").toLowerCase();
 }
+
+var SanitizeStemString = function(str) {
+    return str.replace("hsa-","").replace("hsa","").toLowerCase();
+}
+
+// Given a string of ######X???? where # is a digit, X is a character and ? is anything, return just the # prefix.
+var ExtractLeadingDigits = function(str) {
+    let index = 0;
+    while(index < str.length && IsCharacterDigit(str[index]))
+        ++index;
+    return str.substr(0,index);
+}
+
+// If a character is a single numeric digit (0-9)
+var IsCharacterDigit = function(char){
+    return char.length == 1 && '0123456789'.indexOf(char) !== -1;
+}
