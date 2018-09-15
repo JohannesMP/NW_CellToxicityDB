@@ -26,11 +26,12 @@ function UpdateVersionList(callback)
                 if(release.prerelease == false && release.draft == false)
                     versions.push(new Version(release));
             }
-            callback(null, versions);
+            callback(versions);
         })
         .fail(function(err) {
             console.log("Failure on Versions GET: " + request);
             console.log("Error: " + err);
+            callback(null);
         });
 }
 
