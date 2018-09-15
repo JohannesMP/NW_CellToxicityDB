@@ -62,7 +62,7 @@ $(document).ready(function() {
             console.log(results);
 
             // set up our data storage
-            dataStore = 
+            dataStore = {
                 // A list of all 4096 seeds and their metadata (viability, std dev data, etc.)
                 seedArr:   results[1],
                 seedMap:   {},
@@ -78,7 +78,7 @@ $(document).ready(function() {
                 // versions of the site
                 versions: results[0],
             }
-            
+
             versionPlaceholder.remove();
             for(var i = dataStore.versions.length-1; i >= 0; ++i)
             {
