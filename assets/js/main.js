@@ -9,6 +9,13 @@ var show_mirma = localStorage.getItem('show_mirna') === "false" ? false : true;
 $(document).ready(function() {
 
     // Dom Manipulation
+    let versionPlaceholder = $('#version-placeholder')
+
+    let versionList = $('#version-history');
+    let templateHolder = $('#version-template');
+    let template = templateHolder.find("li").clone();
+    templateHolder.remove();
+
     let tableEl       = $('#data-table');
     let settingsEl    = $('#settings-content');
     let searchBoxEl   = $('#data-search-box');
@@ -25,6 +32,11 @@ $(document).ready(function() {
     // Asynchronous load required data, then process it
     async.parallel(
         [
+            // load version history
+            (callback) => {
+                UpdateVersionList(callback);
+            },
+
             // load seed data
             (callback) => {
                 d3.csv("data/seed_viability.csv")
@@ -46,27 +58,39 @@ $(document).ready(function() {
                 console.error(err);
                 return;
             }
-            console.log("results");
+            console.log("loaded data");
             console.log(results);
 
             // set up our data storage
             dataStore = {
                 // A list of all 4096 seeds and their metadata (viability, std dev data, etc.)
-                seedArr:   results[0],
+                seedArr:   results[1],
                 seedMap:   {},
                 // a list of all miRNAs and their metadata (is predominant, seed, etc.)
-                stemArr: results[1],
+                stemArr: results[2],
                 // maps 
                 stemMap: {},
                 stemAccMap: {},
 
                 // help searching by miRNA stem
-                stemIndex: {}
+                stemIndex: {},
+
+                // versions of the site
+                versions: results[0],
+            }
+            console.log("Versions:");
+            console.log(dataStore.versions);
+
+            versionPlaceholder.remove();
+            for(var i = dataStore.versions.length-1; i >= 0; ++i)
+            {
+                AddVersionEntry(versionList, template, dataStore.versions[i]);
             }
 
             // A lookup map of seed to its data
             for(var i = 0; i < dataStore.seedArr.length; ++i)
                 dataStore.seedMap[dataStore.seedArr[i].seed] = dataStore.seedArr[i];
+
 
             // A lookup map of mi_rna to its data
             for(var i = 0; i < dataStore.stemArr.length; ++i) {
@@ -107,8 +131,6 @@ $(document).ready(function() {
                 parts.shift();
                 walkAndInsert(dataStore.stemIndex, parts, "_seed", item);
             }
-
-
 
             console.log("datastore");
             console.log(dataStore);

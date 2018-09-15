@@ -442,3 +442,14 @@ table.dataTable {
     .col-fixed { width: 350px; }
     .col-fluid { width: calc(100% - 350px);}
 }
+
+ul#version-history {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.version-entry
+{
+
+}
