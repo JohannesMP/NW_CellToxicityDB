@@ -80,7 +80,7 @@ $(document).ready(function() {
             }
 
             versionPlaceholder.remove();
-            for(var i = dataStore.versions.length-1; i >= 0; ++i)
+            for(var i = dataStore.versions.length-1; i >= 0; --i)
             {
                 AddVersionEntry(versionList, template, dataStore.versions[i]);
             }
