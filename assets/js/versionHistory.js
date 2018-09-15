@@ -26,8 +26,6 @@ function UpdateVersionList(callback)
                 if(release.prerelease == false && release.draft == false)
                     versions.push(new Version(release));
             }
-            console.log("TEMP: ");
-            console.log(versions);
             callback(null, versions);
         })
         .fail(function(err) {
