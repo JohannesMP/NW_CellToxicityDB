@@ -19,8 +19,7 @@ See the 'Info' section at the bottom of the page.
 
 ## References
 
-Gao, Q.Q., Putzbach, W.E., Murmann, A.E., Chen, S., Ambrosini, G., Peter, J.M., Bartom, E.T. and Peter, M.E. Induction of DISE by Tumor Suppressive MicroRNAs. Submitted.
-
+Gao, Q.Q., Putzbach, W.E., Murmann, A.E., Chen, S., Sarshad, A.A., Peter, J.M., Bartom, E.T., Hafner, M. and Peter, M.E. 6mer seed toxicity in tumor suppressive microRNAs. Submitted (BioRxive: https://doi.org/10.1101/284406)
 
 ## Libraries Used
 
