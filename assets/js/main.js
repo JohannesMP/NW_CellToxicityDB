@@ -92,7 +92,6 @@ $(document).ready(function() {
                 for(var i = 0; i < dataStore.seedArr.length; ++i)
                     dataStore.seedMap[dataStore.seedArr[i].seed] = dataStore.seedArr[i];
 
-
                 // A lookup map of mi_rna to its data
                 for(var i = 0; i < dataStore.stemArr.length; ++i) {
                     let item = dataStore.stemArr[i];

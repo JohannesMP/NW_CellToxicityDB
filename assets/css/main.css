@@ -2,9 +2,9 @@ p {
     margin-bottom: 0.75rem;
 }
 
-#version-title
-{
+#version-title {
     font-size: 80%;
+    opacity: 0.75;
 }
 
 #header-box {
@@ -346,13 +346,21 @@ tr .mi-rna .mi-arm {
 }
 
 .mi-arm.mi-arm-drosha {
-    color:;
-    border-color: #ec2;
-    border-width: 2px;
+    background-color: #c19e66;
+    border-color: #82644a;
 }
 .mi-arm.mi-arm-drosha:hover {
-    color:;
-    border-color: #fd3;
+    background-color: #503f2e;
+}
+.mi-arm.mi-arm-less.mi-arm-drosha {
+    color: #7c7656;
+    background-color: #d4ccc3;
+    border-color: #c2b3a5;
+}
+.mi-arm.mi-arm-less.mi-arm-drosha:hover {
+    color: #211c13;
+    background-color: #a89d87;
+    border-color: #8e8372;
 }
 
 .red-badge {
