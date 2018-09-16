@@ -37,7 +37,7 @@ $(document).ready(function() {
             let versionNumber = versions[0].number;
             versionTitle.text(versionNumber);
             document.title += " | " + versionNumber;
-            for(var i = versions.length-1; i >= 0; --i)
+            for(var i = 0; i < versions.length; ++i)
             {
                 AddVersionEntry(versionList, template, versions[i]);
             }
