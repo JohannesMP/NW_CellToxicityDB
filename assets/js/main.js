@@ -261,10 +261,12 @@ $(document).ready(function() {
                 for(let i = 0; i < data.mi_rna.length; ++i)
                 {
                     let id = data.mi_rna[i];
-                    let acc = dataStore.stemMap[FilterMiRNAString(id)].accession;
-                    let is_dom = dataStore.stemMap[FilterMiRNAString(id)].is_predominant == "1";
+                    let mirnaInfo = dataStore.stemMap[FilterMiRNAString(id)];
+                    let is_dom = mirnaInfo.is_predominant == "1";
+                    let is_drosha_processed = mirnaInfo.is_drosha_processed == "1";
                     let arm_class = is_dom ? "mi-arm-dom" : "mi-arm-less";
-                    let url = `http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=${acc}`;
+                    arm_class += is_drosha_processed ? " mi-arm-drosha" : "";
+                    let url = `http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=${mirnaInfo.accession}`;
                     str += `<a href="${url}"><div class="badge badge-light mi-arm ${arm_class}">${id}</div></a>`;
                 }
                 row.child('<div class="mi-rna">' + str + '</div>').show();

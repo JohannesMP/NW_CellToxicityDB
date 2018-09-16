@@ -2,6 +2,11 @@ p {
     margin-bottom: 0.75rem;
 }
 
+#version-title
+{
+    font-size: 80%;
+}
+
 #header-box {
     color: #ede6f8;
     background-color: rgba(0,0,0,0.5);
@@ -338,6 +343,16 @@ tr .mi-rna .mi-arm {
     color: #171321;
     background-color: #9188a9;
     border-color: #7a728e;
+}
+
+.mi-arm.mi-arm-drosha {
+    color:;
+    border-color: #ec2;
+    border-width: 2px;
+}
+.mi-arm.mi-arm-drosha:hover {
+    color:;
+    border-color: #fd3;
 }
 
 .red-badge {
