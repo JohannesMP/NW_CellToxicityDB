@@ -330,6 +330,8 @@ tr .mi-rna .mi-arm {
     color: white;
     font-weight: normal;
     border: #42375d solid 1px;
+    border-left-width: 3px;
+    border-right-width: 3px;
 }
 .mi-arm:hover { 
     background-color: #382e50; 
@@ -345,7 +347,18 @@ tr .mi-rna .mi-arm {
     border-color: #7a728e;
 }
 
+.mi-arm .badge-overlay
+{
+    position:relative;
+    background-color: red;
+    height: 100%;
+}
 .mi-arm.mi-arm-drosha {
+    border-color: #e8d847 !important;
+}
+
+
+/*.mi-arm.mi-arm-drosha {
     background-color: #c19e66;
     border-color: #82644a;
 }
@@ -361,13 +374,13 @@ tr .mi-rna .mi-arm {
     color: #211c13;
     background-color: #a89d87;
     border-color: #8e8372;
-}
+}*/
 
 .red-badge {
-      background-color: rgb(255,127,127);
-      border-color: rgb(235, 107, 107);
-      color: black;
-      font-weight: normal;
+    background-color: rgb(255,127,127);
+    border-color: rgb(235, 107, 107);
+    color: black;
+    font-weight: normal;
 }
 .red-badge:hover{
     background-color: rgb(215, 87, 87);
@@ -469,10 +482,15 @@ table.dataTable {
 ul#version-history {
     list-style-type: none;
     padding: 0;
+    padding-left: 1rem;
     margin: 0;
 }
 
-.version-entry
-{
-
+.version-tag {
+    background-color: #c8c3d4;
 }
+.version-tag:hover {
+    background-color: #ffffff;
+}
+
+
