@@ -263,8 +263,10 @@ $(document).ready(function() {
                     let mirnaInfo = dataStore.stemMap[FilterMiRNAString(id)];
                     let is_dom = mirnaInfo.is_predominant == "1";
                     let is_drosha_processed = mirnaInfo.is_drosha_processed == "1";
+                    let is_mirtron = mirnaInfo.is_mirtron == "1";
                     let arm_class = is_dom ? "mi-arm-dom" : "mi-arm-less";
                     arm_class += is_drosha_processed ? " mi-arm-drosha" : "";
+                    arm_class += is_mirtron ? " mi-arm-mirtron" : "";
                     let url = `http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=${mirnaInfo.accession}`;
                     str += `<a href="${url}"><div class="badge badge-light mi-arm ${arm_class}">${id}</div></a>`;
                 }

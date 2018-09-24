@@ -329,9 +329,9 @@ tr .mi-rna .mi-arm {
     background-color: #6c5c91; 
     color: white;
     font-weight: normal;
-    border: #42375d solid 1px;
-    border-left-width: 3px;
-    border-right-width: 3px;
+    border: #42375d solid 2px;
+    border-left-width: 5px;
+    border-right-width: 5px;
 }
 .mi-arm:hover { 
     background-color: #382e50; 
@@ -354,7 +354,10 @@ tr .mi-rna .mi-arm {
     height: 100%;
 }
 .mi-arm.mi-arm-drosha {
-    border-color: #e8d847 !important;
+    border-color: #efc74f !important;
+}
+.mi-arm.mi-arm-mirtron {
+    border-color: #4196d8 !important;
 }
 
 
