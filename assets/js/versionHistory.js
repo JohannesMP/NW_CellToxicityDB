@@ -40,7 +40,7 @@ let AddVersionEntry = function(list, template, version)
     let entry = template.clone();
     entry.find(".version-number").text(version.number);
     let date = new Date(version.date);
-    let dateString = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate();
+    let dateString = date.getFullYear() + "/" + (date.getMonth()+1) + "/" + date.getDate();
     entry.find(".version-date").text(dateString);
     entry.find(".version-url").attr("href", version.url);
     entry.find(".version-name").text(version.name);
