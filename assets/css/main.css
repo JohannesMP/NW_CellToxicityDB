@@ -17,19 +17,23 @@ p {
     position:relative;
 }
 
+.anchor-link {
+    cursor: pointer;
+}
+
 #header-help {
+    opacity: 0.4;
+    transition: opacity 0.2s;
     position: absolute;
     top: 2.8rem;
     right: 1rem;
     font-size: 1.5rem;
-    cursor: pointer;
-    opacity: 0.4;
-    transition: opacity 0.2s;
 }
 
 #header-help:hover {
     opacity: 1;
 }
+
 
 .card {
     margin-bottom: 20px;

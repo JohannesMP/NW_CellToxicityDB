@@ -14,9 +14,11 @@ $(document).ready(function() {
     // Dom Manipulation
     let headerHelp = $('#header-help');
     let howToUse = $('#how-to-use');
-
     headerHelp.click(() => { $(document).scrollTop(howToUse.offset().top); });
 
+    let infoLink = $('#info-link');
+    let infoSection = $('#info');
+    infoLink.click(() => {$(document).scrollTop(infoSection.offset().top); });
 
     let versionPlaceholder = $('#version-placeholder')
 
