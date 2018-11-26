@@ -6,9 +6,18 @@ var filteredRowData;
 
 var show_mirma = localStorage.getItem('show_mirna') === "false" ? false : true;
 
+// How long after the mirna search field received an input before we process it
+var mirnaSearchInputDelay = 100;
+
 $(document).ready(function() {
 
     // Dom Manipulation
+    let headerHelp = $('#header-help');
+    let howToUse = $('#how-to-use');
+
+    headerHelp.click(() => { $(document).scrollTop(howToUse.offset().top); });
+
+
     let versionPlaceholder = $('#version-placeholder')
 
     let versionTitle = $('#version-title');
@@ -136,6 +145,7 @@ $(document).ready(function() {
                 console.log(dataStore);
 
                 InitTable(dataStore);
+                InitAutocomplete(dataStore);
             });
 
 
@@ -218,6 +228,7 @@ $(document).ready(function() {
             // Set up double toggle switch
             $(".mi-rna-toggle")
                 .html(`<input class="data-mirna-toggle" type="checkbox" checked data-toggle="toggle">`);
+
             $(".data-mirna-toggle").bootstrapToggle({
                     on:       'hide miRNAs',
                     off:      'show miRNAs',
@@ -297,8 +308,6 @@ $(document).ready(function() {
                     // $( table.row(index.row).node() ).addClass('highlight');
                 });
 
-
-
             // Helper function to sanitize search field and update table
             var PerformSeedSearch = function(updateHash) {
                 let content = SanitizeSequence(seedSearchEl.val(), 6);
@@ -337,10 +346,21 @@ $(document).ready(function() {
                 mirnaSearchEl.val("");
             });
 
+            // Require a delay after input before we process it.
+            var mirnaInputTimeout;
+
             mirnaSearchEl.on('input', (e) => {
+                clearTimeout(mirnaInputTimeout);
+
                 let field = $(e.target);
                 let input = field.val();
-                field.val(input.replace("hsa-", "").replace("hsa",""));
+                let val = input.replace("hsa-", "").replace("hsa","");
+                field.val(val);
+
+                mirnaInputTimeout = setTimeout( function() { ProcessMirnaInput(val); }, mirnaSearchInputDelay);
+            });
+
+            let ProcessMirnaInput = (input) => {
                 let filtered = FilterMiRNAString(input);
                 let seed;
 
@@ -351,13 +371,9 @@ $(document).ready(function() {
                 else
                     console.log("none");
 
-                // if(seed != undefined)
-                // {
                 seedSearchEl.val(seed);
                 PerformSeedSearch();
-                // }
-              
-            });
+            }
 
             // Reset button
             resetButtonEl.on('click' , (e) => {
@@ -408,6 +424,50 @@ $(document).ready(function() {
                 resetButtonEl.prop("disabled", false);
                 saveButtonEl.prop("disabled", false);
             }
-        }
+        };
+
+        var InitAutocomplete = function(dataset) {
+            
+            var autocompleter;
+
+            var options = {
+                data: dataset.stemArr,
+
+                getValue: function(element) {
+                    return element.mi_rna.replace("hsa-", "")
+                },
+
+                template: {
+                    type: "custom",
+                    
+                    method: function(value, item) {
+                        let dom = item.is_predominant == 1 ? " mi-arm-dom" : " mi-arm-less";
+                        let drosha = item.is_drosha_processed == 1 ? " mi-arm-drosha" : "";
+                        let mirtron = item.is_mirtron == 1 ? " mi-arm-mirtron" : "";
+                        let classes = "mi-arm-marker mi-arm" + dom + drosha + mirtron;
+                        let marker = '<div class="' + classes + '"></div>';
+                        let prefix = '<span class="hsa-prefix">hsa-</span>'
+                        return marker + prefix + value;
+                    }
+                },
+
+                adjustWidth: false,
+                list: {   
+                    match: {
+                        enabled: true
+                    },
+                    maxNumberOfElements: 128,
+
+                    onChooseEvent: function() {
+                                let item = autocompleter.getSelectedItemData();
+                                mirnaSearchEl.val(item.mi_rna);
+                                mirnaSearchEl.trigger('input');
+                            },
+                },
+            };
+
+            // Search field autocomplete
+            autocompleter = mirnaSearchEl.easyAutocomplete(options);
+        };
     }
 });

@@ -14,6 +14,21 @@ p {
     margin-bottom: 1rem;
     border-bottom-left-radius: .5rem;
     border-bottom-right-radius: .5rem;
+    position:relative;
+}
+
+#header-help {
+    position: absolute;
+    top: 2.8rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+}
+
+#header-help:hover {
+    opacity: 1;
 }
 
 .card {
@@ -329,9 +344,7 @@ tr .mi-rna .mi-arm {
     background-color: #6c5c91; 
     color: white;
     font-weight: normal;
-    border: #42375d solid 2px;
-    border-left-width: 5px;
-    border-right-width: 5px;
+    border: #42375d solid 2.5px;
 }
 .mi-arm:hover { 
     background-color: #382e50; 
@@ -347,17 +360,62 @@ tr .mi-rna .mi-arm {
     border-color: #7a728e;
 }
 
-.mi-arm .badge-overlay
-{
-    position:relative;
-    background-color: red;
-    height: 100%;
-}
 .mi-arm.mi-arm-drosha {
     border-color: #efc74f !important;
 }
 .mi-arm.mi-arm-mirtron {
     border-color: #4196d8 !important;
+}
+
+
+/* Autocomplete search bar */
+.input-group .form-control.autocomplete-field-wrapper {
+    padding: 0;
+}
+.input-group input.wrapped-autocomplete-field {
+    position: relative;
+    padding: .375rem .75rem;
+    border: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: rgba(1,1,1,0);
+}
+.input-group input.wrapped-autocomplete-field:disabled, 
+.input-group input.wrapped-autocomplete-field[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+.easy-autocomplete-container ul {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.easy-autocomplete-container ul li, 
+.easy-autocomplete-container ul .eac-category {
+    font-size: inherit;
+    padding: 3px 10px;
+}
+
+.easy-autocomplete-container .mi-arm-marker {
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    width: 2.2rem;
+    height: 1.2rem;
+    margin-top: -5px;
+    margin-right: 0.5rem;
+    border-radius: .25rem;
+}
+
+.mi-arm-marker .mi-arm {
+    border-width: 2.1px;
+}
+
+.eac-item .hsa-prefix {
+    opacity: 0.4;
+    font-style: italic;
 }
 
 
@@ -428,7 +486,7 @@ tr:hover td {
 
 }
 
-/* Search highlighting */
+/* Table Search highlighting */
 table.dataTable .seq-rna span.highlight {
     background-color: #e9d8ff;
     border-radius: 0.3rem;

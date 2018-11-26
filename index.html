@@ -15,6 +15,10 @@
   <!-- JQuery Highlight -->
   <script src="assets/vendor/jquery-highlight/jquery.highlight.min.js"></script>
 
+  <!-- Easy Autocomplete-->
+  <script src="assets/vendor/easyautocomplete-1.3.5/jquery.easy-autocomplete.js"></script>
+  <link rel="stylesheet" href="assets/vendor/easyautocomplete-1.3.5/easy-autocomplete.css">
+
   <!-- Async -->
   <script src="assets/vendor/async-2.6.0/async.min.js"></script>
 
@@ -62,7 +66,9 @@
       <div class="col">
         <div id="header-box">
           <h2>6mer Seed Toxicity <span id="version-title"></span></h2>
-          <p>A tool to determine the toxicity of any siRNA, shRNA or miRNA with known 6mer seed sequence.</p>
+          <p>A tool to determine the toxicity of any siRNA, shRNA or miRNA with known 6mer seed sequence</p>
+          <a id="header-help"><i class="fa fa-question-circle float-right" aria-hidden="true"></i></a>
+
         </div>
       </div>
     </div>
@@ -92,10 +98,12 @@
                       <div class="input-group-prepend">
                         <label for="data-mirna-field" class="input-group-text">miRNA hsa-</label>
                       </div>
-                      <input type="text" 
-                        id="data-mirna-field" class="form-control" 
-                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" 
-                        placeholder="mature miRNA or accession number" disabled>
+                      <!-- wrap to maintain form-control style, since field will get wrapped by autocomplete plugin-->
+                      <div class="form-control autocomplete-field-wrapper">
+                        <input type="text" id="data-mirna-field" class="wrapped-autocomplete-field form-control"
+                          autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" 
+                          placeholder="mature miRNA or accession number" disabled>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -126,47 +134,75 @@
       </div>
     </div> <!-- .row -->
 
+    <br>
+
     <div class="row">
         <div class="col">
-            <div class="card">
-                <div class="card-header"></div>
+            <div class="card card-dark">
+                <div class="card-header" id="how-to-use"><h3>How to use</h3></div>
                 <div class="card-body">
-              To search for miRNAs either type the miRNA accession number (MIMAT#) or the exact name of the miRNA arm. 
-              <ul>
-                  <li>For instance <b>"miR-34a"</b> will not yield a result.</li>
-                  <li>You can either search for <b>"miR-34a-5p"</b> or <b>"miR-34a-3p"</b>. Dashes and capitalization are not relevant (i.e. <b>"mir34a5p"</b> will also work).</li>
-              </ul>
-                  We are currently working on a greatly improved miRNA search functionality. Watch this space.
-              </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <h5 class="card-title">Search 6mers</h5>
+                            <a target="_blank" href="assets/img/seed_Search.png"><img src="assets/img/seed_Search.png" class="img-fluid"/></a>
+                            <p>Enter one of 4096 possible 6mers into the search field or any nucleotide sequence of less than 7 nucleotides.</p>
+                            <p>Use positions 2-7 of the guide/antisense strand of the siRNA duplex as the 6mer.</p>
+                            <br class="d-block d-md-none">
+                        </div>
+
+                        <div class="col-sm">
+                            <h5 class="card-title">Search miRNAs</h5>
+                            <a target="_blank" href="assets/img/mirna_Search.png"><img src="assets/img/mirna_Search.png" class="img-fluid"/></a>
+                            <p>Type in the <b>miRNA</b> search field. It will auto-complete to show matching miRNAs.</p>
+                            <p>Each miRNA is color-coded. The colors are explained in the 'Info' section below.</p>
+                            <br class="d-block d-md-none">
+                        </div>
+
+                        <div class="col-sm">
+                            <h5 class="card-title">miRBase links</h5>
+                            <a target="_blank" href="assets/img/show_mirnas.png"><img src="assets/img/show_mirnas.png" class="img-fluid"/></a>
+                            <p>With <b>show miRNAs</b> enabled, you can click on a miRNA in the results to be taken to corresponding page on <a href=http://mirbase.org target="_blank">mirbase.org</a>.
+                            <br class="d-block d-md-none">
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <br>
+
     <div class="row">
       <div class="col">
         <div class="card card-dark">
-          <div class="card-header"></div>
+          <div class="card-header"><h3>Info</h3></div>
           <div class="card-body">
-            <h5 class="card-title">Info</h5>
-            <p>This site allows to determine the activity of any siRNA, shRNA, or miRNA to be toxic through its 6mer seed sequence in human (<i>HeyA8 - ovarian</i> and <i>H460 - lung</i>) and mouse (<i>M565 - liver and 3LL - lung</i>) cancer cell lines.
-            <ul><li>miRNAs with low viability (high toxicity, <div class="badge badget-light red-badge">red color</div>) will likely be tumor suppressive.</li><li>miRNAs with high viability (low toxicity, <div class="badge badget-light green-badge">green color</div>) can be tumor promoting.</li></ul></p>
+            <p>This site allows to determine the activity of any siRNA, shRNA, or miRNA to be toxic through its 6mer seed sequence in human (<i>HeyA8 - ovarian</i> and <i>H460 - lung</i>) and mouse (<i>M565 - liver and 3LL - lung</i>) cancer cell lines.</p>
 
-            <p>Enter one of 4096 possible 6mers into the search field, any nucleotide sequence of less than 6 nucleotides, or the name of any miRNA or mature miRNA listed at <a href=http://mirbase.org>mirbase.org</a>. Use positions 2-7 of the guide/antisense strand of the siRNA duplex as the 6mer.</p>
+            <p>The viability columns of the data table are colored as follows:</p>
+            <ul>
+                <li>miRNAs with low viability (high toxicity, <div class="badge badget-light red-badge">red color</div>) will likely be tumor suppressive.</li>
+                <li>miRNAs with high viability (low toxicity, <div class="badge badget-light green-badge">green color</div>) can be tumor promoting.</li>
+            </ul>
 
-            <p>Click on a miRNA in the results to be taken to the mirbase site describing the miRNA.
-                <ul>
-                    <li>Mature miRNAs representing the predominant arm are shown in <div style="border-color: #8d7eaf66" class="badge badge-light mi-arm mi-arm-dom">dark purple</div>.</li>
-                    <li>Mature miRNAs representing the lesser expressed arm (the * activity) are shown in <div style="border-color: #e3dff0" class="badge badge-light mi-arm mi-arm-less">light purple</div>.</li>
-                    <li>miRNAs that are highly expressed and processed by Drosha (RISC bound in wild-type but not Drosha k.o. HCT116 cells)  have a <div class="badge badge-light mi-arm mi-arm-dom mi-arm-drosha">yellow</div> <div class="badge badge-light mi-arm mi-arm-less mi-arm-drosha">outline</div>.
+            <p>When <b>show miRNAs</b> is enabled, miRNAs are color-coded as follows:</p>
+            <ul>
+                <li>Mature miRNAs representing the predominant arm are shown in <div style="border-color: #8d7eaf66" class="badge badge-light mi-arm mi-arm-dom">dark purple</div>.</li>
+                <li>Mature miRNAs representing the lesser expressed arm (the * activity) are shown in <div style="border-color: #e3dff0" class="badge badge-light mi-arm mi-arm-less">light purple</div>.</li>
+
+                <li>miRNAs that are highly expressed and processed by Drosha (RISC bound in wild-type but not Drosha k.o. HCT116 cells)  have a <div class="badge badge-light mi-arm mi-arm-dom mi-arm-drosha">yellow</div> <div class="badge badge-light mi-arm mi-arm-less mi-arm-drosha">outline</div>.
+
                     <ul>
                         <li>All other miRNAs are either not processed by Drosha (i.e. miR-320a), miRtrons, or not significantly expressed in HCT116 cells.</li>
                     </ul>
-                    </li>
-                    <li>miRtrons have a <div class="badge badge-light mi-arm mi-arm-dom mi-arm-mirtron">blue</div> <div class="badge badge-light mi-arm mi-arm-less mi-arm-mirtron">outline</div> .</li>
-                </ul>
-            </p>
+                </li>
+
+                <li>miRtrons have a <div class="badge badge-light mi-arm mi-arm-dom mi-arm-mirtron">blue</div> <div class="badge badge-light mi-arm mi-arm-less mi-arm-mirtron">outline</div> .</li>
+            </ul>
 
             <hr>
+
             <h5 class="card-title">References</h5>
             <p>Gao, Q.Q., Putzbach, W.E., Murmann, A.E., Chen, S., Sarshad, A.A., Peter, J.M., Bartom, E.T., Hafner, M. and Peter, M.E. (2018) 6mer seed toxicity in tumor suppressive microRNAs. Nature Comm, 9:4504. </p>
             
@@ -189,12 +225,10 @@
             <ul id="version-history">
             </ul>
 
-
-
             <hr style="clear:both">
             <h5 class="card-title">Acknowledgements</h5>
-            <p>This site was developed by <a href="http://www.johannesmp.com">Johannes Peter</a>.</p>
-            <p>The source code is available on <a href="https://github.com/JohannesMP/NW_CellToxicityDB">Github</a>.</p>
+            <p>This site was developed by <a href="http://www.johannesmp.com" target="_blank">Johannes Peter</a>.</p>
+            <p>The source code is available on <a href="https://github.com/JohannesMP/NW_CellToxicityDB" target="_blank">Github</a> under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT license</a>.</p>
           </div>
           <div class="card-footer"></div>
         </div>
