@@ -448,7 +448,8 @@ $(document).ready(function() {
                         let mirtron = item.is_mirtron == 1 ? " mi-arm-mirtron" : "";
                         let classes = "mi-arm-marker mi-arm" + dom + drosha + mirtron;
                         let marker = '<div class="' + classes + '"></div>';
-                        let prefix = '<span class="hsa-prefix">hsa-</span>'
+                        //let prefix = '<span class="hsa-prefix">hsa-</span>';
+                        let prefix = '';
                         return marker + prefix + value;
                     }
                 },
