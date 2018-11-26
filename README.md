@@ -14,12 +14,13 @@ The app is entirely static, hosted with [Github Pages](https://pages.github.com/
 
 ## How to use
 
-See the 'Info' section at the bottom of the page.
+Please refer to the [sections at the bottom of the live website](https://6merdb.org#how-to-use).
 
 
 ## References
 
 Gao, Q.Q., Putzbach, W.E., Murmann, A.E., Chen, S., Sarshad, A.A., Peter, J.M., Bartom, E.T., Hafner, M. and Peter, M.E. (2018) 6mer seed toxicity in tumor suppressive microRNAs. Nature Comm, in press. Preprint at BioRxiv: https://doi.org/10.1101/284406
+
 
 ## Libraries Used
 
