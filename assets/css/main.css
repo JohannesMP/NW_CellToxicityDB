@@ -348,27 +348,33 @@ tr .mi-rna .mi-arm {
     background-color: #6c5c91; 
     color: white;
     font-weight: normal;
-    border: #42375d solid 2.5px;
+    border: #ada5c2 solid 2.5px;
 }
 .mi-arm:hover { 
-    background-color: #382e50; 
+    background-color: #382e50;
+    border-color: #7a728e; 
 }
 .mi-arm.mi-arm-less { 
     color: #62577d;
     background-color: #c8c3d4; 
-    border-color: #ada5c2;
 }
 .mi-arm.mi-arm-less:hover { 
     color: #171321;
     background-color: #9188a9;
-    border-color: #7a728e;
 }
 
 .mi-arm.mi-arm-drosha {
-    border-color: #efc74f !important;
+    border-color: #efc74f;
 }
+.mi-arm-mi-arm-drosha:hover {
+    border-color: #d89029;
+}
+
 .mi-arm.mi-arm-mirtron {
-    border-color: #4196d8 !important;
+    border-color: #4196d8;
+}
+.mi-arm.mi-arm-mirtron:hover {
+    border-color: #1a74ba;
 }
 
 
