@@ -281,7 +281,7 @@ $(document).ready(function() {
                     arm_class += is_drosha_processed ? " mi-arm-drosha" : "";
                     arm_class += is_mirtron ? " mi-arm-mirtron" : "";
                     let url = `http://www.mirbase.org/cgi-bin/mature.pl?mature_acc=${mirnaInfo.accession}`;
-                    str += `<a href="${url}"><div class="badge badge-light mi-arm ${arm_class}">${id}</div></a>`;
+                    str += `<a href="${url}" target="_blank"><div class="badge badge-light mi-arm ${arm_class}">${id}</div></a>`;
                 }
                 row.child('<div class="mi-rna">' + str + '</div>').show();
                 // ensure correct sizing when small window and scaling up
