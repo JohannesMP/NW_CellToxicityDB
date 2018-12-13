@@ -332,7 +332,7 @@ td {
 
 tr .mi-rna {
     position:relative;
-    top: 0px;
+    top: -1px;
     padding: 0 0 0.1rem 0.7rem;
     margin-bottom: 0.1rem;
     line-height: 1.25rem;
