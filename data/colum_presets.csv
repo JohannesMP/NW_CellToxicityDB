@@ -1,0 +1,5 @@
+﻿Human,via_heya8,std_heya8,via_h460,std_h460,via_h4,std_h4,avg_human,,,,,,
+Mouse,via_m565,std_m565,via_3ll,std_3ll,via_gl261,std_gl261,avg_mouse,,,,,,
+Brain,via_h4,std_h4,via_gl261,std_gl261,avg_brain,,,,,,,,
+Lung,via_h460,std_h460,via_3ll,std_3ll,avg_lung,,,,,,,,
+All,via_heya8,std_heya8,via_h460,std_h460,via_h4,std_h4,via_m565,std_m565,via_3ll,std_3ll,via_gl261,std_gl261,avg_all
