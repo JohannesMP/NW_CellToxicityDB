@@ -21,7 +21,6 @@ function UpdateVersionList(callback)
             let versions = []; 
             for(var i = 0; i < data.length; ++i)
             {
-
                 let release = data[i];
                 if(release.prerelease == false && release.draft == false)
                     versions.push(new Version(release));
@@ -45,6 +44,7 @@ let AddVersionEntry = function(list, template, version)
         date.getFullYear() + 
         "/" + (date.getMonth()+1).toString().padStart(2, '0') + 
         "/" + date.getDate().toString().padStart(2, '0');
+    
     entry.find(".version-date").text(dateString);
     entry.find(".version-url").attr("href", version.url);
     entry.find(".version-name").text(version.name);
