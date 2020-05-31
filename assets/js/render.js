@@ -7,30 +7,24 @@ var renderNum = function( data, type, row, meta ) {
 var renderNumColorRange = function( data, type, row, meta ) {
     var val = renderNum(data);
 
-    // No color
-    if(val == 50)
-        return val;
-
     var rgb_red   = [255,0,0];
+    var rgb_orange = [255,255,128]
     var rgb_green = [0,255,0];
 
-    var a_low  = 0;
+    var a_low  = 0.5;
     var a_high = 0.5;
 
     var t = 0;
 
-    // Red color
-    if(val < 50) {
-        low  = rgb_red.concat(a_low);
+    if(val < 60) {
+        low  = rgb_orange.concat(a_low);
         high = rgb_red.concat(a_high);
-        t = 1 - (val / 50);
+        t = 1 - (val / 60);
     }
-
-    // Green color
-    else if(val > 50) {
-        low  = rgb_green.concat(a_low);
+    else if(val > 60) {
+        low  = rgb_orange.concat(a_low);
         high = rgb_green.concat(a_high);
-        t = (val / 50) - 1;
+        t = (val / 60) - 1;
     }
 
     var rgba = lerpArray(low, high, t);
