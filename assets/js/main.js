@@ -217,6 +217,13 @@ $(document).ready(function() {
                     { data: "std_m565", title: seedHeaders.std_m565, searchable: false, 
                         orderable: false, className: "h-std d-none d-xl-table-cell", render: renderNum  },
 
+                    // mouse: 3ll
+                    { data: "via_3ll", title: seedHeaders.via_3ll, searchable: false, 
+                        orderable: true, className: "h-via d-none d-md-table-cell", render: renderNumColorRange },
+                    { data: "std_3ll", title: seedHeaders.std_3ll, searchable: false, 
+                        orderable: false, className: "h-std d-none d-xl-table-cell", render: renderNum  },
+
+
                     // mouse: gl261
                     { data: "via_gl261", title: seedHeaders.via_gl261, searchable: false, 
                         orderable: true, className: "h-via d-none d-md-table-cell", render: renderNumColorRange },
