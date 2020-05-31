@@ -14,7 +14,7 @@ var renderNumColorRange = function( data, type, row, meta ) {
     var a_low  = 0;
     var a_high = 0.5;
 
-    var midpoint = 60;
+    var midpoint = 50;
     var t = 0;
 
     if(val < midpoint) {
