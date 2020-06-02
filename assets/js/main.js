@@ -150,6 +150,7 @@ $(document).ready(function() {
                 InitAutocomplete(dataStore);
             });
 
+        var allAvgColIndex = 16;
 
         var InitTable = function(dataset) {
             loadingEl.remove();
@@ -173,7 +174,7 @@ $(document).ready(function() {
                 lengthMenu:  [ [ 10, 50, 100, 500, -1], 
                                [ 10, 50, 100, 500, "All (slow)"] ],
                 pageLength:  10,
-                order:       [6, 'asc'],    
+                order:       [allAvgColIndex, 'asc'],    
 
                 columns: [
                     // Seed
