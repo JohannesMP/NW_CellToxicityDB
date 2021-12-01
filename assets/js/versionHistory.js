@@ -1,5 +1,4 @@
-function Version(release)
-{
+const Version = function(release) {
     this.number = release.tag_name;
     this.date = release.published_at;
     this.name = release.name;
@@ -7,8 +6,7 @@ function Version(release)
     this.url = release.html_url;
 }
 
-function UpdateVersionList(callback)
-{
+function UpdateVersionList(callback) {
     let repoOwner  = "JohannesMP";
     let repoName   = "NW_CellToxicityDB";
     let apiFormat  = "https://api.github.com/repos/{0}/{1}/{2}";
@@ -17,25 +15,24 @@ function UpdateVersionList(callback)
     let request = String.format(apiFormat, repoOwner, repoName, apiRequest);
 
     $.get(request)
-        .done(function(data) {
+        .done( (data) => {
             let versions = []; 
-            for(var i = 0; i < data.length; ++i)
-            {
+            for (var i = 0; i < data.length; ++i) {
                 let release = data[i];
-                if(release.prerelease == false && release.draft == false)
+                if (release.prerelease == false && release.draft == false) {
                     versions.push(new Version(release));
+                }
             }
             callback(versions);
         })
-        .fail(function(err) {
+        .fail( (err) => {
             console.log("Failure on Versions GET: " + request);
             console.log("Error: " + err);
             callback(null);
         });
 }
 
-let AddVersionEntry = function(list, template, version)
-{
+function AddVersionEntry(list, template, version) {
     let entry = template.clone();
     entry.find(".version-number").text(version.number);
     let date = new Date(version.date);

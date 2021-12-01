@@ -1,142 +1,76 @@
 
-const headerPercent = SpanShowAboveXS("(%)", "h-percent");
-const headerCells = SpanShowAboveSM("cells ");
+const StemEntry = function(rawData) {
+    this.mi_rna = rawData.mi_rna;
+    this.seed = rawData.seed;
 
-// The headers used to identify each row in the csv
-const seedHeaders = {
-    seed:           'Seed',                      // DNA 6-Mer
-    via_heya8:      'Viability HeyA8 ' + headerPercent,
-    std_heya8:      'StDev',
-    via_h460:       'Viability H460 '  + headerPercent,
-    std_h460:       'StDev',
-    via_h4:         'Viability H4 ' + headerPercent,
-    std_h4:         'StDev',
-    avg_human:      'Avg ' + SpanHideAboveSM("viability ") + 'human ' + headerCells + headerPercent,
-    via_m565:       'Viability M565 '  + headerPercent,
-    std_m565:       'StDev',
-    via_3ll:        'Viability 3LL '   + headerPercent,
-    std_3ll:        'StDev',
-    via_gl261:      'Viability GL261 ' + headerPercent,
-    std_gl261:      'StDev',
-    avg_mouse:      'Avg ' + SpanHideAboveSM("viability ") + 'mouse ' + headerCells + headerPercent,
-    avg_all:        'Avg ' + SpanHideAboveSM("viability ") + 'all '   + headerCells + headerPercent,
-    mi_rna:         'miRNAs',                    // filled in later 
-};
+    this.accession = rawData.accession;
+    this.is_predominant = rawData.is_predominant == "1";
+    this.is_drosha_processed = rawData.is_drosha_processed == "1";
+    this.is_mirtron = rawData.is_mirtron == "1";
 
-
-// Mer6 Data Default Constructor
-function Mer6(  obj, 
-                via_heya8, 
-                std_heya8, 
-                via_h460, 
-                std_h460,
-                via_h4,
-                std_h4,
-                avg_human, 
-                via_m565, 
-                std_m565,
-                via_3ll,
-                std_3ll,
-                via_gl261,
-                std_gl261,
-                avg_mouse,
-                avg_all) {
-  // obj is seed string
-  if(typeof(obj) === "string")
-      this.set(   obj,        via_heya8,  std_heya8,  via_h460,   std_h460,     via_h4,     std_h4,     avg_human, 
-                  via_m565,   std_m565,   via_3ll,    std_3ll,    via_gl261,    std_gl261,  avg_mouse,  avg_all);
-  // obj is a row array
-  else if(Array.isArray("array"))
-      this.set(obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], obj[6], obj[7], obj[8], obj[9], obj[10], obj[11], obj[12], obj[13], obj[14], obj[15]);
-  // obj is row object
-  else
-      this.set(
-          obj.seed,
-          obj.via_heya8,
-          obj.std_heya8,
-          obj.via_h460,
-          obj.std_h460,
-          obj.via_h4,
-          obj.std_h4,
-          obj.avg_human,
-          obj.via_m565,
-          obj.std_m565,
-          obj.via_3ll,
-          obj.std_3ll,
-          obj.via_gl261,
-          obj.std_gl261,
-          obj.avg_mouse,
-          obj.avg_all
-      );
+    this.rawData = rawData;
 }
 
-Mer6.prototype.set = function(seed, via_heya8, std_heya8, via_h460, std_h460, via_h4, std_h4, avg_human, 
-                              via_m565, std_m565, via_3ll, std_3ll, via_gl261, std_gl261, avg_mouse, avg_all, mi_rna) {
-    this.seed               = seed;
-    this.via_heya8          = +via_heya8;
-    this.std_heya8          = +std_heya8;
-    this.via_h460           = +via_h460;
-    this.std_h460           = +std_h460;
-    this.via_h4             = +via_h4;
-    this.std_h4             = +std_h4;
-    this.avg_human          = +avg_human;
-    this.via_m565           = +via_m565;
-    this.std_m565           = +std_m565;
-    this.via_3ll            = +via_3ll;
-    this.std_3ll            = +std_3ll;
-    this.via_gl261          = +via_gl261;
-    this.std_gl261          = +std_gl261;
-    this.avg_mouse          = +avg_mouse;
-    this.avg_all            = +avg_all;
-    this.mi_rna             = (mi_rna !== undefined) ? mi_rna : [];
+const SeedEntry = function(rawData) {
+    this.seed = rawData.seed;
+    this.index = ConvertSequenceToIndex(this.seed);
+    this.mi_rna = [];
+
+    this.rawData = rawData;
 }
 
-
-Mer6.prototype.toCSVRow = function() {
-    return this.toArray().join(',') + "\n";
+function ConvertRNAToDNA(rnaSequence) {
+    return rnaSequence.split('U').join('T');
 }
 
-Mer6.prototype.toArray = function() {
-    return [
-        this.seed,
-        this.via_heya8,
-        this.std_heya8,
-        this.via_h460,
-        this.std_h460,
-        this.via_h4,
-        this.std_h4,
-        this.avg_human,
-        this.via_m565,
-        this.std_m565,
-        this.via_3ll,
-        this.std_3ll,
-        this.via_gl261,
-        this.std_gl261,
-        this.avg_mouse,
-        this.avg_all,
-        `"${this.mi_rna.join(",")}"`,
-    ];
+function ConvertDNAToRNA(dnaSequence) {
+    return dnaSequence.split('T').join('U');
 }
 
-// takes an array with a 'columns' field
-var Mer6ArrayToCSV = function(dataArr)
-{
-    // Set up headers
-    let csv = dataArr.columns.map( col => col ).join(",") 
-        //+ "," + seedHeaders.avg_human 
-        + "," + seedHeaders.mi_rna + "\n";
-
-    for(var i = 0; i < dataArr.length; ++i)
-        csv += dataArr[i].toCSVRow();
-    
-    return csv;
+// Maps a base4 digit to its corresponding RNA base
+function ConvertDigitToRNA(digit) {
+    switch (digit) {
+        case '0': return 'A';
+        case '1': return 'C';
+        case '2': return 'G';
+        case '3': return 'U';
+    }
 }
 
-
-var RNAtoDNA = function (str) {
-    return str.split('U').join('T');
+// Maps a base4 digit to its corresponding DNA base
+function ConvertDigitToRNA(digit) {
+    switch (digit) {
+        case '0': return 'A';
+        case '1': return 'C';
+        case '2': return 'G';
+        case '3': return 'T';
+    }
 }
 
-var DNAtoRNA = function (str) {
-    return str.split('T').join('U');
+// Maps an RNA or DNA Base to its corresponding base4 digit
+function ConvertBaseToDigit(sequenceBase) {
+    switch (sequenceBase) {
+        case 'A': return '0';
+        case 'C': return '1';
+        case 'G': return '2';
+        case 'T':
+        case 'U': return '3';
+    }
+}
+
+// Maps a given RNA/DNA sequence to its zero-based index
+function ConvertSequenceToIndex(sequence) {
+    const callback = ConvertBaseToDigit;
+    const base4Str = sequence.map(callback);
+    return parseInt(base4Str, 4);
+}
+
+// Maps a zero-based index to its corresponding RNA/DNA sequence
+function ConvertIndexToSequence(index, isDNA) {
+    const callback = isDNA ? GetDNAFromDigit : GetRNAFromDigit;
+    let base4Str = index.toString(4);
+    if (base4Str.length < 6) {
+        base4Str = "0".repeat(6 - base4Str.length) + base4Str;
+    }
+    return base4Str.map(callback);
 }
